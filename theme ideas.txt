@@ -1,0 +1,26 @@
+Plant the seed: same as garden OR do some sort of butterfly effect mechanic
+Decay: your character is constantly falling apart and must collect something to delay the decay
+Recharge: all star idea, but maybe you're a robot that has a battery that must recharge, is spent when attacking, etc?
+Depths: could use the pandora idea, reaching further into the depths of the box lets you unlock funny new weapons
+Salvage: actual easy mode?: space shooter with the concepts to the right; easy mode: take pieces of broken robots to make new minions that you sent out to fight? (that doesn't sound easy lmao); hard mode: twisted metal where you collect scrap from dead cars and upgrade
+Doors: each level you pick a door that determines what the next level will be like (hazards, certain enemy types, a reward, etc)
+Send signals: send pings to robots to do certain actions, your position could determine when the signals reach them with certain timings
+Keep it together: work as a group, keep the group together to have strength in numbers as you kill bigger monsters
+Out of order: "final boss" first, followed by "earlier" game levels that are ironically harder
+Wild magic: fight with highly unusual spells (no fireballs?), like goofy summons, or messing with gravity in weird ways, reversing time, etc
+Side effects: could be funny and have special effects that alter one side of the screen or do potions with side effects idk
+Garden: all star rest area where you plant things to help you later in between combat levels
+Trade: hold one single item that you trade for wildly different items to progress (gun, jetpack, fighter jet? lol)
+Waves: reality-bending psychic waves, maybe some timed button presses to "sync" with the waves
+Bottomless: pandora lmao
+Companion: you have a partner or pet that helps you fight which you can upgrade and heal etc.
+Layers: character is a being of LAYERS which have different attributes? i.e. you take damage and the next layer determines your abilities
+Anchor: you move through a dangerous area where enemies try to knock you into hazards, which you prevent with your trusty anchor that you can pick up and put down
+
+Genre ideas:
+space shooter: the return??? ez to implement, works with a lot of themes
+action platformer: contra type of thing, good for combat focus or the spell casting stuff, also fairly easy to implement
+fps: more work due to being 3D, not as good for platforming or environmental changes, but can still work
+top down 2D: another viable option if I don't want to make use of gravity, slightly more work involved with environment design maybe
+ace combat: probably easier than cars, but still a bit involved, might have too much focus on 3D models and effects
+vehicular combat: probably don't, since if enemies need to be vehicles, I would have to do navmesh stuff

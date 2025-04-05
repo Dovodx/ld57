@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://da5nolxjbph02"]
+
+[ext_resource type="FontFile" uid="uid://r4i6uwufoe0q" path="res://Roboto-Medium.ttf" id="1_touxu"]
+
+[resource]
+default_font = ExtResource("1_touxu")
+/colors/primary_text_color = Color(0, 0.780392, 0, 1)
+/fonts/standard_font = ExtResource("1_touxu")
+Button/colors/font_color = Color(0, 0.784314, 0, 1)
+RichTextLabel/colors/default_color = Color(0, 0.784314, 0, 1)
