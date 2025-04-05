@@ -22,7 +22,7 @@ MVP:
     ✔sprite (improve later, probably make smaller)
     ✔laser sprite
     ✔screen boundaries
-    -shoot laser
+    ✔shoot laser
     -take damage
     -die
     -summon THE BOX
@@ -57,11 +57,11 @@ MVP:
     -W guy returns!?!?!?
 -test level
 -enemy 1
-    -moves straight down to ram into player with spikes
+    ✔moves straight down to ram into player with spikes
     ✔sprite
-    -damage player
-    -take damage
-    -die
+    ✔damage player
+    ✔take damage
+    ✔die
     -give DEEP POINTS?
 -hud
     -player health

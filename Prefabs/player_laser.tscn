@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b623nbltxuqvb"]
+
+[ext_resource type="Script" uid="uid://bmibqxwxw2prg" path="res://Scripts/PlayerLaserScript.gd" id="1_jq6rg"]
+[ext_resource type="Texture2D" uid="uid://w4mqll5eyham" path="res://Textures/player laser.png" id="1_r7l8n"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="3_et36x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81xng"]
+size = Vector2(4, 16)
+
+[node name="player laser" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_jq6rg")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_r7l8n")
+
+[node name="deathtimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.35
+one_shot = true
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("3_et36x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
+shape = SubResource("RectangleShape2D_81xng")
+
+[connection signal="timeout" from="deathtimer" to="." method="_on_deathtimer_timeout"]
+[connection signal="was_hit" from="hitbox" to="." method="_on_hitbox_was_hit"]
