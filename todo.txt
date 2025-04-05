@@ -17,27 +17,29 @@ concept idea: explore the depths of space and your mysterious new weapon, Pandor
 maybe have a meter that you can build up to unleash different levels of chaos from the box
 
 
-MVP:
+todo:
+-make hitboxes track what they've already hit and exclude them so they don't get hit multiple times
 -player ship
     ✔sprite (improve later, probably make smaller)
     ✔laser sprite
     ✔screen boundaries
     ✔shoot laser
-    -take damage
-    -die
-    -summon THE BOX
-    -box spawns random weapon or projectile
-    -special pandora meter?
+    ✔take damage
+    ✔die
+    ✔summon THE BOX
+    ✔box spawns random weapon or projectile
+    -boxy sounds
+    ✔special pandora meter
 -weapons
-    -RPG
-        -weapon sprite
-        -projectile sprite
-        -spawn projectile
-        -explosion effect
+    ✔RPG
+        ✔projectile sprite
+        ✔spawn projectile
+        ✔explosion effect
         -fire sound
         -explode sound
-    -vacuum
-    -giant energy worm
+    ✔vacuum
+        -sfx
+    Xgiant energy worm (hard to implement, lower priorty)
     -flail centered on player (does not hit enemy projectiles)
     -flamethrower
     -laser that bounces around the screen
@@ -55,15 +57,19 @@ MVP:
     -legally distinct crash bandicoot TNT
     -a soothing song that puts enemies to sleep
     -W guy returns!?!?!?
--test level
+✔test level
 -enemy 1
     ✔moves straight down to ram into player with spikes
     ✔sprite
     ✔damage player
     ✔take damage
     ✔die
-    -give DEEP POINTS?
+    -sound effects
+-enemy 2
+    -move around slowly
+    -shoot at player
 -hud
-    -player health
-    -PANDORA POINTS
+    ✔player health
+    ✔PANDORA METER
+    ✔death screen
     -show if upgrade available? or split meter into X number of levels

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dg4fnd0lydoit"]
 
 [ext_resource type="Script" uid="uid://cr5xu4kagjcec" path="res://Scripts/PlayerScript.gd" id="1_6phgx"]
-[ext_resource type="Texture2D" uid="uid://dqgmrvc6gxgo4" path="res://Textures/player.png" id="1_tumq0"]
-[ext_resource type="Texture2D" uid="uid://bgrytuceaec2j" path="res://Textures/enemy 1.png" id="2_k5f4k"]
-[ext_resource type="Script" uid="uid://dnt77miv7gun3" path="res://Scripts/Enemy1Script.gd" id="3_81xng"]
+[ext_resource type="Script" uid="uid://bug6h2l363i5u" path="res://Scripts/EnemySpawnerScript.gd" id="3_6phgx"]
+[ext_resource type="Texture2D" uid="uid://dtd6kmbmaou43" path="res://Textures/player ship v2.png" id="3_wqkje"]
+[ext_resource type="Theme" uid="uid://da5nolxjbph02" path="res://ui_theme.tres" id="4_81xng"]
 [ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="5_wqkje"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
@@ -11,14 +11,153 @@ size = Vector2(9000, 200)
 
 [node name="level" type="Node2D"]
 
+[node name="hud" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+theme = ExtResource("4_81xng")
+
+[node name="healthbar back" type="ColorRect" parent="hud"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 268.0
+offset_right = 212.0
+offset_bottom = 288.0
+color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[node name="healthbar fill" type="ColorRect" parent="hud"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 268.0
+offset_right = 165.255
+offset_bottom = 288.0
+color = Color(1, 0, 0, 1)
+
+[node name="hp label" type="RichTextLabel" parent="hud"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 268.0
+offset_right = 28.0
+offset_bottom = 288.0
+bbcode_enabled = true
+text = "HP"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pandora back" type="ColorRect" parent="hud"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 268.0
+offset_right = 510.0
+offset_bottom = 288.0
+color = Color(0.121569, 0, 0.168627, 1)
+
+[node name="pandora fill" type="ColorRect" parent="hud"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 268.0
+offset_right = 463.255
+offset_bottom = 288.0
+color = Color(0.278915, 0.0289372, 0.355155, 1)
+
+[node name="pandora label" type="RichTextLabel" parent="hud"]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 268.0
+offset_right = 327.0
+offset_bottom = 288.0
+bbcode_enabled = true
+text = "Pandora"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="death" type="Control" parent="hud"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="hud/death"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
+
+[node name="you died" type="RichTextLabel" parent="hud/death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -124.0
+offset_right = 106.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 34
+text = "YOU DIED"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="retry" type="Button" parent="hud/death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -56.0
+offset_right = 105.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Retry"
+
+[node name="quit" type="Button" parent="hud/death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 7.0
+offset_right = 105.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
+
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(256, 262)
-collision_mask = 58
+position = Vector2(256, 245)
+collision_mask = 50
 motion_mode = 1
 script = ExtResource("1_6phgx")
 
 [node name="sprite" type="Sprite2D" parent="player"]
-texture = ExtResource("1_tumq0")
+z_index = 5
+texture = ExtResource("3_wqkje")
+
+[node name="healthnode" type="Node" parent="player"]
+script = ExtResource("5_wqkje")
+health = 100.0
+maxhealth = 100.0
 
 [node name="laser timer" type="Timer" parent="player"]
 process_callback = 0
@@ -30,11 +169,11 @@ visible = false
 polygon = PackedVector2Array(16, 16, 4, -16, -4, -16, -16, 16)
 
 [node name="hurtbox" type="Area2D" parent="player"]
-collision_mask = 10
+collision_mask = 8
 
 [node name="collider" type="CollisionPolygon2D" parent="player/hurtbox"]
 visible = false
-polygon = PackedVector2Array(16, 16, 4, -16, -4, -16, -16, 16)
+polygon = PackedVector2Array(11, 14, 10, -4, 3, -11, -3, -11, -10, -4, -11, 14)
 
 [node name="vertical boundaries" type="StaticBody2D" parent="."]
 visible = false
@@ -45,7 +184,7 @@ position = Vector2(256, -100)
 shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="bottom boundary" type="CollisionShape2D" parent="vertical boundaries"]
-position = Vector2(256, 388)
+position = Vector2(256, 368)
 shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="horizontal boundaries" type="StaticBody2D" parent="."]
@@ -63,33 +202,15 @@ position = Vector2(612, 144)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_6phgx")
 
-[node name="enemy1" type="CharacterBody2D" parent="."]
-position = Vector2(244, 26)
-motion_mode = 1
-script = ExtResource("3_81xng")
+[node name="enemy spawner" type="Node" parent="."]
+script = ExtResource("3_6phgx")
 
-[node name="sprite" type="Sprite2D" parent="enemy1"]
-texture = ExtResource("2_k5f4k")
+[node name="timer" type="Timer" parent="enemy spawner"]
+process_callback = 0
+autostart = true
 
-[node name="healthnode" type="Node" parent="enemy1"]
-script = ExtResource("5_wqkje")
-team = 1
-
-[node name="hitbox" type="Area2D" parent="enemy1"]
-collision_layer = 8
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="enemy1/hitbox"]
-visible = false
-polygon = PackedVector2Array(12, -29, 15, -9, 26, 13, 13, 28, -13, 28, -26, 13, -15, -9, -12, -29)
-
-[node name="hurtbox" type="Area2D" parent="enemy1"]
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="enemy1/hurtbox"]
-visible = false
-polygon = PackedVector2Array(12, -29, 15, -9, 26, 13, 13, 28, -13, 28, -26, 13, -15, -9, -12, -29)
-
-[connection signal="died" from="enemy1/healthnode" to="enemy1" method="_on_healthnode_died"]
-[connection signal="area_entered" from="enemy1/hitbox" to="enemy1" method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="enemy1/hurtbox" to="enemy1/healthnode" method="hurtbox_hit"]
+[connection signal="pressed" from="hud/death/retry" to="player" method="_on_retry_pressed"]
+[connection signal="pressed" from="hud/death/quit" to="player" method="_on_quit_pressed"]
+[connection signal="died" from="player/healthnode" to="player" method="_on_healthnode_died"]
+[connection signal="area_entered" from="player/hurtbox" to="player/healthnode" method="hurtbox_hit"]
+[connection signal="timeout" from="enemy spawner/timer" to="enemy spawner" method="_on_timer_timeout"]

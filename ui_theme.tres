@@ -4,7 +4,7 @@
 
 [resource]
 default_font = ExtResource("1_touxu")
-/colors/primary_text_color = Color(0, 0.780392, 0, 1)
+/colors/primary_text_color = Color(1, 0, 0, 1)
 /fonts/standard_font = ExtResource("1_touxu")
-Button/colors/font_color = Color(0, 0.784314, 0, 1)
-RichTextLabel/colors/default_color = Color(0, 0.784314, 0, 1)
+Button/colors/font_color = Color(1, 0, 0, 1)
+RichTextLabel/colors/default_color = Color(1, 0, 0, 1)

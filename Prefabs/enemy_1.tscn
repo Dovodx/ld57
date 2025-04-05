@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw8iajn5s7gcu"]
+
+[ext_resource type="Script" uid="uid://dnt77miv7gun3" path="res://Scripts/Enemy1Script.gd" id="1_fsc0u"]
+[ext_resource type="Texture2D" uid="uid://bgrytuceaec2j" path="res://Textures/enemy 1.png" id="2_a1233"]
+[ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="3_70g80"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="4_a1233"]
+
+[node name="enemy1" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_fsc0u")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_a1233")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-9, -26, 9, -26, 17, 12, -17, 12)
+
+[node name="healthnode" type="Node" parent="."]
+script = ExtResource("3_70g80")
+team = 1
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 8
+script = ExtResource("4_a1233")
+team = 1
+damage = 10
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox"]
+visible = false
+polygon = PackedVector2Array(12, -29, 15, -9, 26, 13, 13, 28, -13, 28, -26, 13, -15, -9, -12, -29)
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hurtbox"]
+visible = false
+polygon = PackedVector2Array(12, -29, 15, -9, 26, 13, 13, 28, -13, 28, -26, 13, -15, -9, -12, -29)
+
+[connection signal="died" from="healthnode" to="." method="_on_healthnode_died"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="healthnode" method="hurtbox_hit"]

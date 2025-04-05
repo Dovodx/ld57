@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhmk1c7vsukmi"]
+
+[ext_resource type="Texture2D" uid="uid://bqxkqbm00lont" path="res://Textures/pandora/rocket.png" id="1_irkkf"]
+[ext_resource type="Script" uid="uid://babbfeffw5yx6" path="res://Scripts/pandora/RocketScript.gd" id="1_uunle"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="3_0id76"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uunle"]
+size = Vector2(22, 39)
+
+[node name="rocket" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 10
+motion_mode = 1
+script = ExtResource("1_uunle")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_irkkf")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_0id76")
+damage = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_uunle")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,0 +1,219 @@
+[gd_scene load_steps=12 format=3 uid="uid://ow2uhaljlqxs"]
+
+[ext_resource type="Script" uid="uid://cntls1yq8u7sd" path="res://Scripts/pandora/VacuumScript.gd" id="1_b81n0"]
+[ext_resource type="Texture2D" uid="uid://n1wrfl8710mi" path="res://Textures/pandora/vacuum.png" id="1_r8y4i"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_s6rhe"]
+[ext_resource type="Texture2D" uid="uid://bywxgle5q76lu" path="res://Textures/pandora/vacuum dust.png" id="4_1a5yh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8y4i"]
+size = Vector2(30, 14)
+
+[sub_resource type="Gradient" id="Gradient_1a5yh"]
+offsets = PackedFloat32Array(0, 0.190909, 0.745455, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.752941, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m2ufo"]
+gradient = SubResource("Gradient_1a5yh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1a5yh"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -103.805, 0)
+emission_shape = 3
+emission_box_extents = Vector3(84.075, 50, 1)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -87.55
+radial_accel_max = -87.55
+color_ramp = SubResource("GradientTexture1D_m2ufo")
+
+[sub_resource type="Animation" id="Animation_1a5yh"]
+resource_name = "suck"
+length = 6.0
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.85, 4.36667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 19.285), Vector2(0, 0), Vector2(0, 0), Vector2(0, 19.285)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.2, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("suck:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.85, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hitbox:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.85, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5.98333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m2ufo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("suck:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hitbox:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m2ufo"]
+_data = {
+&"RESET": SubResource("Animation_m2ufo"),
+&"suck": SubResource("Animation_1a5yh")
+}
+
+[node name="vacuum" type="CharacterBody2D"]
+z_index = 1
+motion_mode = 1
+script = ExtResource("1_b81n0")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_r8y4i")
+
+[node name="suck" type="Area2D" parent="."]
+position = Vector2(-2, -8)
+collision_layer = 4
+collision_mask = 10
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="suck"]
+position = Vector2(2, 6)
+polygon = PackedVector2Array(-12, -10, -107, -110, 107, -110, 9, -10)
+
+[node name="hitbox" type="Area2D" parent="."]
+visible = false
+monitoring = false
+script = ExtResource("2_s6rhe")
+damage = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-2, -7)
+shape = SubResource("RectangleShape2D_r8y4i")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-1, -9)
+amount = 20
+texture = ExtResource("4_1a5yh")
+lifetime = 1.3
+process_material = SubResource("ParticleProcessMaterial_1a5yh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_m2ufo")
+}
+
+[connection signal="body_entered" from="suck" to="." method="_on_suck_body_entered"]
+[connection signal="body_exited" from="suck" to="." method="_on_suck_body_exited"]

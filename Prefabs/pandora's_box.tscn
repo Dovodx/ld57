@@ -1,0 +1,147 @@
+[gd_scene load_steps=14 format=3 uid="uid://cm05d2fyaydmg"]
+
+[ext_resource type="Script" uid="uid://cquqpfkqj4qoc" path="res://Scripts/PandoraScript.gd" id="1_8dlgq"]
+[ext_resource type="PackedScene" uid="uid://bhmk1c7vsukmi" path="res://Prefabs/pandora/rocket.tscn" id="2_8q0cf"]
+[ext_resource type="Texture2D" uid="uid://c6j6ihyppl7dc" path="res://Textures/pandora smoke.png" id="2_8scg0"]
+[ext_resource type="Texture2D" uid="uid://csaflcoumh6k7" path="res://Textures/box open 2.png" id="3_8q0cf"]
+[ext_resource type="PackedScene" uid="uid://ow2uhaljlqxs" path="res://Prefabs/pandora/vacuum.tscn" id="3_co3ow"]
+[ext_resource type="Texture2D" uid="uid://dq2e8a0l56d8p" path="res://Textures/box closed.png" id="4_co3ow"]
+[ext_resource type="Texture2D" uid="uid://b7ggy0uhbwiuu" path="res://Textures/box open 1.png" id="5_yiyea"]
+
+[sub_resource type="Gradient" id="Gradient_8c0lf"]
+colors = PackedColorArray(0.396889, 0.396889, 0.396889, 0.745098, 0.237539, 0.237539, 0.237539, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_754fn"]
+gradient = SubResource("Gradient_8c0lf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_754fn"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 22.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 1.2
+color_ramp = SubResource("GradientTexture1D_754fn")
+
+[sub_resource type="Animation" id="Animation_ha31o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_co3ow")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qxfql"]
+resource_name = "open"
+length = 4.00001
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.716667, 1, 3, 3.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_co3ow"), ExtResource("5_yiyea"), ExtResource("3_8q0cf"), ExtResource("5_yiyea"), ExtResource("4_co3ow")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.8, 3.98333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"spawn_weapon"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.33333, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pa6b8"]
+_data = {
+&"RESET": SubResource("Animation_ha31o"),
+&"open": SubResource("Animation_qxfql")
+}
+
+[node name="pandora\'s box" type="Node2D"]
+script = ExtResource("1_8dlgq")
+prefabs = Array[PackedScene]([ExtResource("2_8q0cf"), ExtResource("3_co3ow")])
+
+[node name="particles" type="GPUParticles2D" parent="."]
+amount = 10
+texture = ExtResource("2_8scg0")
+process_material = SubResource("ParticleProcessMaterial_754fn")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_co3ow")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pa6b8")
+}

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh2xp427nl5ln"]
+
+[ext_resource type="Texture2D" uid="uid://b56a6tann701g" path="res://Textures/pandora/energy worm segment.png" id="1_3fvpg"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="1_03ky1"]
+[ext_resource type="Script" uid="uid://cnn2b2wqd2u1j" path="res://Scripts/pandora/EnergyWormScript.gd" id="1_hdn67"]
+
+[node name="energy worm" type="CharacterBody2D"]
+position = Vector2(218, 114)
+script = ExtResource("1_hdn67")
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource("1_03ky1")
+damage = 5
+
+[node name="sprite" type="Sprite2D" parent="hitbox"]
+texture = ExtResource("1_3fvpg")

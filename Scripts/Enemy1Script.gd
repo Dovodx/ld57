@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
 var speed = 200
+var external_force = Vector2.ZERO
+var external_force_decay = 0.99
 
 func _physics_process(delta: float) -> void:
-	velocity = Vector2.DOWN * speed
+	velocity = Vector2.DOWN * speed + external_force
 	if global_position.y >= 322:
 		die()
 	move_and_slide()
+	external_force *= external_force_decay
 
 func die():
 	queue_free()
