@@ -18,6 +18,8 @@ maybe have a meter that you can build up to unleash different levels of chaos fr
 
 
 todo:
+-sfx for everything
+-badass soundtrack
 -make hitboxes track what they've already hit and exclude them so they don't get hit multiple times
 -player ship
     ✔sprite (improve later, probably make smaller)
@@ -38,10 +40,9 @@ todo:
         -fire sound
         -explode sound
     ✔vacuum
-        -sfx
     Xgiant energy worm (hard to implement, lower priorty)
-    -flail centered on player (does not hit enemy projectiles)
-    -flamethrower
+    ✔flail centered on player (does not hit enemy projectiles)
+    ✔flamethrower
     -laser that bounces around the screen
     -summoned swords lol (can cancel out enemy projectiles)
     -bat swarm (steals health?)
@@ -57,6 +58,7 @@ todo:
     -legally distinct crash bandicoot TNT
     -a soothing song that puts enemies to sleep
     -W guy returns!?!?!?
+    -minigun, for maximum pleasure
 ✔test level
 -enemy 1
     ✔moves straight down to ram into player with spikes

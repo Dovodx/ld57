@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cm05d2fyaydmg"]
+[gd_scene load_steps=16 format=3 uid="uid://cm05d2fyaydmg"]
 
 [ext_resource type="Script" uid="uid://cquqpfkqj4qoc" path="res://Scripts/PandoraScript.gd" id="1_8dlgq"]
 [ext_resource type="PackedScene" uid="uid://bhmk1c7vsukmi" path="res://Prefabs/pandora/rocket.tscn" id="2_8q0cf"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://csaflcoumh6k7" path="res://Textures/box open 2.png" id="3_8q0cf"]
 [ext_resource type="PackedScene" uid="uid://ow2uhaljlqxs" path="res://Prefabs/pandora/vacuum.tscn" id="3_co3ow"]
 [ext_resource type="Texture2D" uid="uid://dq2e8a0l56d8p" path="res://Textures/box closed.png" id="4_co3ow"]
+[ext_resource type="PackedScene" uid="uid://nm1q3080p2f8" path="res://Prefabs/pandora/flail.tscn" id="4_yiyea"]
+[ext_resource type="PackedScene" uid="uid://l8uoj3nyjg7a" path="res://Prefabs/pandora/flamethrower.tscn" id="5_e4vc1"]
 [ext_resource type="Texture2D" uid="uid://b7ggy0uhbwiuu" path="res://Textures/box open 1.png" id="5_yiyea"]
 
 [sub_resource type="Gradient" id="Gradient_8c0lf"]
@@ -131,7 +133,7 @@ _data = {
 
 [node name="pandora\'s box" type="Node2D"]
 script = ExtResource("1_8dlgq")
-prefabs = Array[PackedScene]([ExtResource("2_8q0cf"), ExtResource("3_co3ow")])
+prefabs = Array[PackedScene]([ExtResource("2_8q0cf"), ExtResource("3_co3ow"), ExtResource("4_yiyea"), ExtResource("5_e4vc1")])
 
 [node name="particles" type="GPUParticles2D" parent="."]
 amount = 10

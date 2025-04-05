@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=3 uid="uid://l8uoj3nyjg7a"]
+
+[ext_resource type="Script" uid="uid://cxgwg5snrvmmb" path="res://Scripts/pandora/FlamethrowerScript.gd" id="1_g4bbo"]
+[ext_resource type="Texture2D" uid="uid://1poelbjstdh3" path="res://Textures/pandora/flamethrower.png" id="1_mrwux"]
+[ext_resource type="Texture2D" uid="uid://dvdoevwle2ryi" path="res://Textures/pandora/fire particle.png" id="2_sgfmj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrwux"]
+size = Vector2(88, 130)
+
+[sub_resource type="Gradient" id="Gradient_sgfmj"]
+offsets = PackedFloat32Array(0, 0.154545, 0.281818, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4bbo"]
+gradient = SubResource("Gradient_sgfmj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4bbo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(17.21, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_min = 172.55
+initial_velocity_max = 172.55
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 1.5
+color = Color(1, 0, 0, 0.580392)
+color_ramp = SubResource("GradientTexture1D_g4bbo")
+
+[sub_resource type="Animation" id="Animation_g4bbo"]
+resource_name = "flame"
+length = 7.0
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 4), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hitbox_active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0gifn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hitbox_active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0gifn"]
+_data = {
+&"RESET": SubResource("Animation_0gifn"),
+&"flame": SubResource("Animation_g4bbo")
+}
+
+[node name="flamethrower" type="Node2D"]
+script = ExtResource("1_g4bbo")
+hitbox_active = false
+
+[node name="sprite" type="Sprite2D" parent="."]
+z_index = 6
+texture = ExtResource("1_mrwux")
+
+[node name="box" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(3, -92)
+shape = SubResource("RectangleShape2D_mrwux")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(3, -27)
+emitting = false
+amount = 20
+texture = ExtResource("2_sgfmj")
+lifetime = 0.8
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_g4bbo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0gifn")
+}

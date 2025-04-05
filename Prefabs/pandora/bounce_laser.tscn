@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccb1r6vtk8oj1"]
+
+[ext_resource type="Texture2D" uid="uid://ubfoeyx2i0ac" path="res://Textures/pandora/bounce laser.png" id="1_rckdb"]
+[ext_resource type="Script" uid="uid://m04uvn6ic2aa" path="res://Scripts/pandora/BounceLaserScript.gd" id="1_yi2y8"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_ccnxn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccnxn"]
+size = Vector2(10, 40)
+
+[sub_resource type="Gradient" id="Gradient_rckdb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ccnxn"]
+gradient = SubResource("Gradient_rckdb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rckdb"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ccnxn")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rckdb"]
+size = Vector2(10, 40)
+
+[node name="bounce laser" type="CharacterBody2D"]
+modulate = Color(0.706346, 0, 1, 1)
+position = Vector2(191, 135)
+collision_layer = 0
+collision_mask = 48
+motion_mode = 1
+script = ExtResource("1_yi2y8")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_rckdb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ccnxn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = ExtResource("1_rckdb")
+process_material = SubResource("ParticleProcessMaterial_rckdb")
+
+[node name="hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_ccnxn")
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_rckdb")
