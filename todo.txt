@@ -1,0 +1,49 @@
+DEPTHS
+Pandora's Box - explore the depths and discover funny weapons inside
+focus is on variety of weapons, so probably go with action platformer or maybe space shooter
+kill big spooky ghosts and demon looking things
+maybe get a currency called DEEP POINTS (lol?) that lets you unlock more things from the depths of the box
+have the unlock menu show the inside being an endless void with moving shadows and such
+maybe just unlock things in between levels? or have it accesible via menu
+how does the player interact with all the funny weapons - equip to a hotbar, maybe when you pull weapons out, you don't know what you're going to get?
+maybe unlocking things unlocks a bigger pool of weapons to pull, rather than letting you cherry pick what you're using?
+
+alternative ideas: depths of the ocean - dark scary stuff (not sure I want to put that much focus on environment design)
+
+design thoughts:
+how should enemies damage the player? running into them and shooting projectiles makes sense, but how the player dodges projectiles depends on platformer vs top-down
+should the player be able to aim with the mouse, or shoot straight only, or aim up and down with W and S?
+concept idea: explore the depths of space and your mysterious new weapon, Pandora's Box, to defeat alien invaders (or evil robots or something)
+maybe have a meter that you can build up to unleash different levels of chaos from the box
+
+
+MVP:
+-character that moves with physics
+    -sprites
+        -stand
+        -run
+        -jump
+        -hurt
+        -die
+    -detect ground vs walls for jump resetting
+-weapons
+    -basic starting weapon RPG
+        -weapon sprite
+        -projectile sprite
+        -spawn projectile
+        -explosion effect
+        -fire sound
+        -explode sound
+-test level
+-enemy
+    -physics
+    -movement
+    -sprites
+    -damage player
+    -take damage
+    -die
+    -give DEEP POINTS
+-hud
+    -player health
+    -DEEP POINTS
+    -show if upgrade available
