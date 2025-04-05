@@ -18,32 +18,52 @@ maybe have a meter that you can build up to unleash different levels of chaos fr
 
 
 MVP:
--character that moves with physics
-    -sprites
-        -stand
-        -run
-        -jump
-        -hurt
-        -die
-    -detect ground vs walls for jump resetting
+-player ship
+    ✔sprite (improve later, probably make smaller)
+    ✔laser sprite
+    ✔screen boundaries
+    -shoot laser
+    -take damage
+    -die
+    -summon THE BOX
+    -box spawns random weapon or projectile
+    -special pandora meter?
 -weapons
-    -basic starting weapon RPG
+    -RPG
         -weapon sprite
         -projectile sprite
         -spawn projectile
         -explosion effect
         -fire sound
         -explode sound
+    -vacuum
+    -giant energy worm
+    -flail centered on player (does not hit enemy projectiles)
+    -flamethrower
+    -laser that bounces around the screen
+    -summoned swords lol (can cancel out enemy projectiles)
+    -bat swarm (steals health?)
+    -tornado
+    -acid rain
+    -lightning strikes
+    -missile barrage
+    -vortex of doom
+    -pirate cannon
+    -player clones
+    -spinning blade that travels around the screen
+    -meteor shower
+    -legally distinct crash bandicoot TNT
+    -a soothing song that puts enemies to sleep
+    -W guy returns!?!?!?
 -test level
--enemy
-    -physics
-    -movement
-    -sprites
+-enemy 1
+    -moves straight down to ram into player with spikes
+    ✔sprite
     -damage player
     -take damage
     -die
-    -give DEEP POINTS
+    -give DEEP POINTS?
 -hud
     -player health
-    -DEEP POINTS
-    -show if upgrade available
+    -PANDORA POINTS
+    -show if upgrade available? or split meter into X number of levels

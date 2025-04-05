@@ -31,7 +31,6 @@ window/size/viewport_width=512
 window/size/viewport_height=288
 window/size/mode=2
 window/stretch/mode="canvas_items"
-window/vsync/vsync_mode=0
 
 [input]
 
@@ -73,11 +72,21 @@ secondary_fire={
 
 [layer_names]
 
+2d_render/layer_1="hud"
+2d_render/layer_2="player"
+2d_render/layer_3="enemies"
+2d_render/layer_4="environment"
+2d_physics/layer_1="player"
 3d_physics/layer_1="environment"
+2d_physics/layer_2="enemy"
 3d_physics/layer_2="player"
+2d_physics/layer_3="player projectile"
 3d_physics/layer_3="enemy"
+2d_physics/layer_4="enemy projectile"
 3d_physics/layer_4="barrier"
+2d_physics/layer_5="vertical boundary"
 3d_physics/layer_5="gib"
+2d_physics/layer_6="horizontal boundary"
 
 [physics]
 
@@ -89,3 +98,4 @@ common/physics_interpolation=true
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

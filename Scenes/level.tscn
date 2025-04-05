@@ -1,9 +1,51 @@
-[gd_scene format=3 uid="uid://dg4fnd0lydoit"]
+[gd_scene load_steps=5 format=3 uid="uid://dg4fnd0lydoit"]
+
+[ext_resource type="Script" uid="uid://cr5xu4kagjcec" path="res://Scripts/PlayerScript.gd" id="1_6phgx"]
+[ext_resource type="Texture2D" uid="uid://dqgmrvc6gxgo4" path="res://Textures/player.png" id="1_tumq0"]
+[ext_resource type="Texture2D" uid="uid://bgrytuceaec2j" path="res://Textures/enemy 1.png" id="2_k5f4k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
+size = Vector2(9000, 200)
 
 [node name="level" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(256, 262)
+collision_mask = 58
+script = ExtResource("1_6phgx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="sprite" type="Sprite2D" parent="player"]
+texture = ExtResource("1_tumq0")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="collider" type="CollisionPolygon2D" parent="player"]
+visible = false
+polygon = PackedVector2Array(16, 16, 4, -16, -4, -16, -16, 16)
+
+[node name="Enemy1" type="Sprite2D" parent="."]
+position = Vector2(256, 41)
+texture = ExtResource("2_k5f4k")
+
+[node name="vertical boundaries" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="top boundary" type="CollisionShape2D" parent="vertical boundaries"]
+position = Vector2(256, -100)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="bottom boundary" type="CollisionShape2D" parent="vertical boundaries"]
+position = Vector2(256, 388)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="horizontal boundaries" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 21
+
+[node name="left boundary" type="CollisionShape2D" parent="horizontal boundaries"]
+position = Vector2(-100, 144)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="right boundary" type="CollisionShape2D" parent="horizontal boundaries"]
+position = Vector2(612, 144)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_6phgx")
