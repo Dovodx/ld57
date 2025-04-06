@@ -19,22 +19,24 @@ maybe have a meter that you can build up to unleash different levels of chaos fr
 
 todo:
 ✔sfx for everything
--badass soundtrack
+✔badass soundtrack
 ✔make sure pausing works
 ✔level select with maybe 5 levels then a boss
 ✔win screen
 ✔next level button
 ✔fix level transition bug (player does not reset, spawned pandora weapons stay, etc.)
--swords suddenly insta-die and don't delete projectiles....
+✔fixed: swords suddenly insta-die and don't delete projectiles....
+✔have music continue between levels (except boss)
 -save data
 
--have music continue between levels (except boss)
+-boss
+-boss music
 
 ✔fixed objects not despawning on scene change (attach to root/level, not root)
 ✔fixed enemies 2 and 3 not damaging the player on collision
--make swords capable of absorbing more projectiles before disappearing
+✔make swords capable of absorbing more projectiles before disappearing
 -sound for swords disappearing
--enemy healthbars
+-enemy healthbars OR damaged sprites
 -enemy projectile interactions:
     ✔swords destroy enemy shots
     ✔DVD delete

@@ -38,8 +38,8 @@ func _physics_process(delta: float):
 	if Input.is_action_just_pressed("secondary_fire") && pandora_meter >= 25:
 		pandora_meter -= 25
 		var boxtospawn = pandora_prefab.instantiate()
-		boxtospawn.global_position = global_position + Vector2.UP * 20
-		get_tree().root.add_child(boxtospawn)
+		boxtospawn.position = Vector2.UP * 20
+		add_child(boxtospawn)
 	
 	move_and_slide()
 

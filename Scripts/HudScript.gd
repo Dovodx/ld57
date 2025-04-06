@@ -27,10 +27,12 @@ func _on_resume_pressed() -> void:
 	$"pause menu".visible = false
 
 func _on_retry_pressed() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _on_quit_pressed() -> void:
 	#todo: go back to campaign screen if in campaign, main if endless mode
+	get_tree().paused = false
 	get_tree().change_scene_to_packed(load("res://Scenes/main_menu.tscn"))
 
 func _on_options_pressed() -> void:
@@ -42,5 +44,6 @@ func _on_options_exit_pressed() -> void:
 	$"pause menu".visible = true
 
 func _on_next_pressed() -> void:
+	get_tree().paused = false
 	Global.current_level += 1
 	Global.load_level()

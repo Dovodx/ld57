@@ -1,6 +1,6 @@
 extends Node2D
 
-var spin_speed = 6
+var spin_speed = 8
 var sword_distance = 51
 var num_swords = 8
 

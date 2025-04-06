@@ -14,6 +14,7 @@ motion_mode = 1
 script = ExtResource("1_bwbby")
 
 [node name="sprite" type="Sprite2D" parent="."]
+z_index = 8
 texture = ExtResource("1_q5vla")
 
 [node name="hitbox" type="Area2D" parent="." node_paths=PackedStringArray("die_on_hit")]

@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	Global.stop_level_music()
 	var levels_unlocked = Global.levels_cleared + 1
 	var i = 1
 	for item in $"button container".get_children():

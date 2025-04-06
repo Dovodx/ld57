@@ -44,5 +44,5 @@ shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="enemy spawner" parent="." instance=ExtResource("3_c5erv")]
 enemies = Array[PackedScene]([ExtResource("10_af2a1")])
-spawn_time = 0.8
-total_enemies_to_spawn = 40
+spawn_time = 0.75
+total_enemies_to_spawn = 50

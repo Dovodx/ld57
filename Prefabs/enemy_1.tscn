@@ -47,7 +47,7 @@ polygon = PackedVector2Array(12, -29, 15, -9, 26, 13, 13, 28, -13, 28, -26, 13, 
 
 [node name="death sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_23stb")
-volume_db = -8.0
+volume_db = -10.0
 max_distance = 1e+08
 attenuation = 1e-05
 max_polyphony = 20

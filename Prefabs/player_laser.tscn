@@ -14,6 +14,7 @@ motion_mode = 1
 script = ExtResource("1_jq6rg")
 
 [node name="sprite" type="Sprite2D" parent="."]
+z_index = 9
 texture = ExtResource("1_r7l8n")
 
 [node name="deathtimer" type="Timer" parent="."]

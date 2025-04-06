@@ -21,3 +21,12 @@ func toggle_fullscreen():
 func load_level(level_num = current_level):
 	get_tree().call_deferred("unload_current_scene")
 	get_tree().change_scene_to_packed(levels[current_level - 1])
+	if level_num < 6:
+		start_level_music()
+
+func start_level_music():
+	if !$"level music".playing:
+		$"level music".play()
+
+func stop_level_music():
+	$"level music".stop()

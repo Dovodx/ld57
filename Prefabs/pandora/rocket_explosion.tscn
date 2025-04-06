@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_i4c4s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pngfq"]
-radius = 57.0
+radius = 90.0
 
 [sub_resource type="Gradient" id="Gradient_ly2lc"]
 colors = PackedColorArray(1, 1, 1, 0.909804, 1, 1, 1, 0)
@@ -16,17 +16,18 @@ colors = PackedColorArray(1, 1, 1, 0.909804, 1, 1, 1, 0)
 gradient = SubResource("Gradient_ly2lc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hy424"]
-particle_flag_align_y = true
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 7.57
+angle_min = 1.07288e-05
+angle_max = 360.0
 spread = 180.0
 flatness = 1.0
-initial_velocity_min = 45.0
-initial_velocity_max = 50.0
+initial_velocity_min = 53.25
+initial_velocity_max = 53.25
 gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 2.0
+scale_min = 3.0
+scale_max = 3.0
 color = Color(1, 0.280127, 0.263246, 1)
 color_ramp = SubResource("GradientTexture1D_hy424")
 
@@ -46,14 +47,14 @@ pitch_variance = 0.1
 
 [node name="hitbox" type="Area2D" parent="."]
 script = ExtResource("1_pngfq")
-damage = 30
+damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_pngfq")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 16
+amount = 20
 texture = ExtResource("2_ly2lc")
 one_shot = true
 explosiveness = 1.0

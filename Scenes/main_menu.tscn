@@ -98,6 +98,7 @@ theme_override_font_sizes/font_size = 18
 text = "Campaign"
 
 [node name="endless" type="Button" parent="button container"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_ma1bl")
 theme_override_font_sizes/font_size = 18

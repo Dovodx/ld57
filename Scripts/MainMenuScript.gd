@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	$"options_menu/exit button".connect("pressed", close_options)
+	Global.stop_level_music()
 
 func close_options():
 	$options_bg.visible = false
