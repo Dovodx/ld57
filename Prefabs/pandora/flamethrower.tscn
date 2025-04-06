@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://l8uoj3nyjg7a"]
+[gd_scene load_steps=15 format=3 uid="uid://l8uoj3nyjg7a"]
 
 [ext_resource type="Script" uid="uid://cxgwg5snrvmmb" path="res://Scripts/pandora/FlamethrowerScript.gd" id="1_g4bbo"]
 [ext_resource type="Texture2D" uid="uid://1poelbjstdh3" path="res://Textures/pandora/flamethrower.png" id="1_mrwux"]
@@ -6,9 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://8c3ks44325fp" path="res://Sounds/flames v2.wav" id="4_bbbrw"]
 [ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_ivvco"]
 [ext_resource type="AudioStream" uid="uid://cjukpvoyksu7n" path="res://Sounds/flamethrower cock.wav" id="6_ivvco"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrwux"]
-size = Vector2(88, 130)
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="7_60i07"]
 
 [sub_resource type="Gradient" id="Gradient_sgfmj"]
 offsets = PackedFloat32Array(0, 0.154545, 0.281818, 1)
@@ -159,6 +157,9 @@ _data = {
 &"flame": SubResource("Animation_g4bbo")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrwux"]
+size = Vector2(88, 130)
+
 [node name="flamethrower" type="Node2D"]
 script = ExtResource("1_g4bbo")
 hitbox_active = false
@@ -166,11 +167,6 @@ hitbox_active = false
 [node name="sprite" type="Sprite2D" parent="."]
 z_index = 6
 texture = ExtResource("1_mrwux")
-
-[node name="box" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(3, -92)
-shape = SubResource("RectangleShape2D_mrwux")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(3, -27)
@@ -205,3 +201,13 @@ max_polyphony = 20
 bus = &"SFX"
 script = ExtResource("5_ivvco")
 pitch_variance = 0.02
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("7_60i07")
+
+[node name="box" type="CollisionShape2D" parent="hitbox"]
+visible = false
+position = Vector2(3, -92)
+shape = SubResource("RectangleShape2D_mrwux")

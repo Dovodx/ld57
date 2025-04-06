@@ -6,11 +6,13 @@ extends Node
 @export var dead = false
 
 signal died
+signal took_damage
 
 func hurtbox_hit(area: Area2D):
 	if dead or area.get("team") == null: return
 	if area.team != team:
 		take_damage(area.damage)
+		took_damage.emit()
 		area.was_hit.emit()
 
 func take_damage(damage):

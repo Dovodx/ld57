@@ -35,15 +35,16 @@ todo:
 ✔fixed objects not despawning on scene change (attach to root/level, not root)
 ✔fixed enemies 2 and 3 not damaging the player on collision
 ✔make swords capable of absorbing more projectiles before disappearing
+✔authentic vacuum sound
 -sound for swords disappearing
--enemy healthbars OR damaged sprites
+✔enemy damaged sprites
 -enemy projectile interactions:
     ✔swords destroy enemy shots
     ✔DVD delete
     -make vacuum suck in enemy projectiles too
-    -flamethrower?
-    -flail destroys projectiles? maybe its role is to do damage rather than protect the player
--try using area2d with flamethrower, maybe it can work if it's not being re-enabled after spawning?
+    Xflamethrower?
+    Xflail destroys projectiles? maybe its role is to do damage rather than protect the player
+✔try using area2d with flamethrower, maybe it can work if it's not being re-enabled after spawning?
 -make hitboxes track what they've already hit and exclude them so they don't get hit multiple times?
 ✔player ship
     ✔sprite (improve later, probably make smaller)
@@ -72,7 +73,7 @@ todo:
     ✔flamethrower
     ✔DVD logo
     ✔summoned swords lol (can cancel out enemy projectiles)
-    -bat swarm (steals health?)
+    ✔bat swarm (steals health?)
     -tornado
     -acid rain
     -lightning strikes

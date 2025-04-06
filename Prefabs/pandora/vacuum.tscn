@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_s6rhe"]
 [ext_resource type="Texture2D" uid="uid://bywxgle5q76lu" path="res://Textures/pandora/vacuum dust.png" id="4_1a5yh"]
 [ext_resource type="AudioStream" uid="uid://dhk75t111bt6w" path="res://Sounds/suck v2.wav" id="5_3msxj"]
-[ext_resource type="AudioStream" uid="uid://8c3ks44325fp" path="res://Sounds/flames v2.wav" id="5_lottt"]
+[ext_resource type="AudioStream" uid="uid://dpi6fpu1r1k7d" path="res://Sounds/vacuum.wav" id="5_lottt"]
 [ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_lottt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8y4i"]
@@ -93,7 +93,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_1a5yh"]
 resource_name = "suck"
-length = 6.0
+length = 9.7
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -102,7 +102,7 @@ tracks/0/path = NodePath("GPUParticles2D:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.85, 4.36667),
+"times": PackedFloat32Array(0, 0.85, 6.35),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -114,7 +114,7 @@ tracks/1/path = NodePath("sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 5.2, 6),
+"times": PackedFloat32Array(0, 0.5, 7.18333, 9.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 19.285), Vector2(0, 0), Vector2(0, 0), Vector2(0, 19.285)]
@@ -126,7 +126,7 @@ tracks/2/path = NodePath("sprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 5.2, 6),
+"times": PackedFloat32Array(0, 0.5, 7.18333, 9.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -138,7 +138,7 @@ tracks/3/path = NodePath("suck:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.85, 5.2),
+"times": PackedFloat32Array(0, 0.85, 7.18333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -150,7 +150,7 @@ tracks/4/path = NodePath("hitbox:monitoring")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.85, 5.2),
+"times": PackedFloat32Array(0, 0.85, 7.18333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -162,11 +162,25 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(5.98333),
+"times": PackedFloat32Array(9.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("vacuum sound")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.833333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sfx"
 }]
 }
 
@@ -185,6 +199,7 @@ script = ExtResource("1_b81n0")
 texture = ExtResource("1_r8y4i")
 
 [node name="suck" type="Area2D" parent="."]
+visible = false
 position = Vector2(-2, -8)
 collision_layer = 4
 collision_mask = 10
@@ -228,7 +243,7 @@ attenuation = 1e-05
 max_polyphony = 20
 bus = &"SFX"
 script = ExtResource("6_lottt")
-pitch_variance = 0.1
+pitch_variance = 0.01
 
 [node name="scoop sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_3msxj")

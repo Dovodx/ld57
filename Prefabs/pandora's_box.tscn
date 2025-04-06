@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cm05d2fyaydmg"]
+[gd_scene load_steps=23 format=3 uid="uid://cm05d2fyaydmg"]
 
 [ext_resource type="Script" uid="uid://cquqpfkqj4qoc" path="res://Scripts/PandoraScript.gd" id="1_8dlgq"]
 [ext_resource type="PackedScene" uid="uid://bhmk1c7vsukmi" path="res://Prefabs/pandora/rocket.tscn" id="2_8q0cf"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b7ggy0uhbwiuu" path="res://Textures/box open 1.png" id="5_yiyea"]
 [ext_resource type="PackedScene" uid="uid://ccb1r6vtk8oj1" path="res://Prefabs/pandora/bounce_laser.tscn" id="6_e4vc1"]
 [ext_resource type="PackedScene" uid="uid://dys32k8d10uat" path="res://Prefabs/pandora/swords.tscn" id="7_hg7ky"]
+[ext_resource type="PackedScene" uid="uid://c8vls6fo3s683" path="res://Prefabs/pandora/bats.tscn" id="8_5gau0"]
 [ext_resource type="AudioStream" uid="uid://pxpklv7rxcvx" path="res://Sounds/box open.wav" id="10_0t8ic"]
 [ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="11_pff78"]
 [ext_resource type="AudioStream" uid="uid://bf6lcnl1c55ap" path="res://Sounds/box close.wav" id="12_pff78"]
@@ -181,7 +182,7 @@ _data = {
 
 [node name="pandora\'s box" type="Node2D"]
 script = ExtResource("1_8dlgq")
-prefabs = Array[PackedScene]([ExtResource("2_8q0cf"), ExtResource("3_co3ow"), ExtResource("4_yiyea"), ExtResource("5_e4vc1"), ExtResource("6_e4vc1"), ExtResource("7_hg7ky")])
+prefabs = Array[PackedScene]([ExtResource("2_8q0cf"), ExtResource("3_co3ow"), ExtResource("4_yiyea"), ExtResource("5_e4vc1"), ExtResource("6_e4vc1"), ExtResource("7_hg7ky"), ExtResource("8_5gau0")])
 
 [node name="particles" type="GPUParticles2D" parent="."]
 amount = 10

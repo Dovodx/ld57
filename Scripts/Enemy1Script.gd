@@ -3,6 +3,7 @@ extends CharacterBody2D
 var speed = 100
 var external_force = Vector2.ZERO
 var external_force_decay = 0.99
+var damaged_sprite = preload("res://Textures/enemy 1 damaged.png")
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.DOWN * speed + external_force
@@ -25,3 +26,7 @@ func _on_healthnode_died() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	die() #die when we ram into the player
+
+func _on_healthnode_took_damage() -> void:
+	if $healthnode.health < $healthnode.maxhealth:
+		$sprite.texture = damaged_sprite
