@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg4fnd0lydoit"]
+[gd_scene load_steps=14 format=3 uid="uid://dg4fnd0lydoit"]
 
 [ext_resource type="Script" uid="uid://cr5xu4kagjcec" path="res://Scripts/PlayerScript.gd" id="1_6phgx"]
+[ext_resource type="Script" uid="uid://ckw1t837c0axd" path="res://Scripts/HudScript.gd" id="2_ha31o"]
 [ext_resource type="Script" uid="uid://bug6h2l363i5u" path="res://Scripts/EnemySpawnerScript.gd" id="3_6phgx"]
 [ext_resource type="Texture2D" uid="uid://dtd6kmbmaou43" path="res://Textures/player ship v2.png" id="3_wqkje"]
 [ext_resource type="Theme" uid="uid://da5nolxjbph02" path="res://ui_theme.tres" id="4_81xng"]
@@ -18,12 +19,14 @@ size = Vector2(9000, 200)
 [node name="level" type="Node2D"]
 
 [node name="hud" type="Control" parent="."]
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
 offset_right = 512.0
 offset_bottom = 288.0
 theme = ExtResource("4_81xng")
+script = ExtResource("2_ha31o")
 
 [node name="healthbar back" type="ColorRect" parent="hud"]
 layout_mode = 0
@@ -150,6 +153,75 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Back to menu"
 
+[node name="pause menu" type="Control" parent="hud"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="hud/pause menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
+
+[node name="title" type="RichTextLabel" parent="hud/pause menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -124.0
+offset_right = 106.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 34
+text = "Paused"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resume" type="Button" parent="hud/pause menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -56.0
+offset_right = 105.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="quit" type="Button" parent="hud/pause menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 7.0
+offset_right = 105.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
+
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(256, 245)
 collision_mask = 50
@@ -238,6 +310,8 @@ autostart = true
 
 [connection signal="pressed" from="hud/death/retry" to="player" method="_on_retry_pressed"]
 [connection signal="pressed" from="hud/death/quit" to="player" method="_on_quit_pressed"]
+[connection signal="pressed" from="hud/pause menu/resume" to="hud" method="_on_resume_pressed"]
+[connection signal="pressed" from="hud/pause menu/quit" to="player" method="_on_quit_pressed"]
 [connection signal="died" from="player/healthnode" to="player" method="_on_healthnode_died"]
 [connection signal="area_entered" from="player/hurtbox" to="player/healthnode" method="hurtbox_hit"]
 [connection signal="timeout" from="enemy spawner/timer" to="enemy spawner" method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cm05d2fyaydmg"]
+[gd_scene load_steps=22 format=3 uid="uid://cm05d2fyaydmg"]
 
 [ext_resource type="Script" uid="uid://cquqpfkqj4qoc" path="res://Scripts/PandoraScript.gd" id="1_8dlgq"]
 [ext_resource type="PackedScene" uid="uid://bhmk1c7vsukmi" path="res://Prefabs/pandora/rocket.tscn" id="2_8q0cf"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://pxpklv7rxcvx" path="res://Sounds/box open.wav" id="10_0t8ic"]
 [ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="11_pff78"]
 [ext_resource type="AudioStream" uid="uid://bf6lcnl1c55ap" path="res://Sounds/box close.wav" id="12_pff78"]
+[ext_resource type="AudioStream" uid="uid://dfebjyss1tq64" path="res://Sounds/spooky sound.wav" id="13_5rh4i"]
 
 [sub_resource type="Gradient" id="Gradient_8c0lf"]
 colors = PackedColorArray(0.396889, 0.396889, 0.396889, 0.745098, 0.237539, 0.237539, 0.237539, 0)
@@ -157,6 +158,20 @@ tracks/5/keys = {
 "method": &"play_sfx"
 }]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("spooky sound")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sfx"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pa6b8"]
 _data = {
@@ -195,6 +210,16 @@ max_polyphony = 20
 bus = &"SFX"
 script = ExtResource("11_pff78")
 pitch_variance = 0.05
+
+[node name="spooky sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_5rh4i")
+volume_db = -8.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("11_pff78")
+pitch_variance = 0.01
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

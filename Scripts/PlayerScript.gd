@@ -10,7 +10,7 @@ var pandora_prefab = preload("res://Prefabs/pandora's_box.tscn")
 var healthbar_max_size = 184.0
 
 @onready var pandorabar_fill = $"/root/level/hud/pandora fill"
-var pandora_meter = 100.0
+var pandora_meter = 0.0
 var pandora_max = 100.0
 var pandora_laser_add = 1
 
@@ -18,10 +18,6 @@ var pandora_laser_add = 1
 
 var laser_cooldown = 0.2
 var speed = 400
-
-func _ready():
-	deathscreen.visible = false
-	deathscreen.set_process_input(false)
 
 func _physics_process(delta: float):
 	healthbar_fill.size.x = healthnode.health / healthnode.maxhealth * healthbar_max_size
@@ -51,13 +47,13 @@ func laser_hit():
 	pandora_meter = min(pandora_meter + pandora_laser_add, pandora_max)
 
 func _on_healthnode_died():
+	if Global.level_complete: return
 	deathscreen.visible = true
 	deathscreen.set_process_input(true)
 	visible = false
 	get_tree().root.get_node("level/enemy spawner/timer").stop()
+	get_tree().paused = false
+	get_node("/root/level/hud/pause menu").visible = false
 
-func _on_retry_pressed() -> void:
-	get_tree().change_scene_to_packed(load("res://Scenes/level.tscn"))
-
-func _on_quit_pressed() -> void:
-	get_tree().change_scene_to_packed(load("res://Scenes/main_menu.tscn"))
+func level_cleared():
+	$hurtbox.queue_free()

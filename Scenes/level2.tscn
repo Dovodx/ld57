@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1i0qmfu2unx5"]
+
+[ext_resource type="PackedScene" uid="uid://dlknqh1c5yphi" path="res://Prefabs/hud.tscn" id="1_dlanv"]
+[ext_resource type="PackedScene" uid="uid://b5x8j0donbfxa" path="res://Prefabs/player.tscn" id="2_onqnr"]
+[ext_resource type="PackedScene" uid="uid://b0gj86phlp8nb" path="res://Prefabs/enemy_spawner.tscn" id="3_styii"]
+[ext_resource type="PackedScene" uid="uid://cw8iajn5s7gcu" path="res://Prefabs/enemy_1.tscn" id="4_lgosu"]
+[ext_resource type="PackedScene" uid="uid://bw2ynto3l1bnq" path="res://Prefabs/enemy_2.tscn" id="5_onqnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
+size = Vector2(9000, 200)
+
+[node name="level" type="Node2D"]
+
+[node name="hud" parent="." instance=ExtResource("1_dlanv")]
+
+[node name="player" parent="." instance=ExtResource("2_onqnr")]
+position = Vector2(256, 245)
+
+[node name="vertical boundaries" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 16
+
+[node name="top boundary" type="CollisionShape2D" parent="vertical boundaries"]
+position = Vector2(256, -100)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="bottom boundary" type="CollisionShape2D" parent="vertical boundaries"]
+position = Vector2(256, 368)
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="horizontal boundaries" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 32
+collision_mask = 21
+
+[node name="left boundary" type="CollisionShape2D" parent="horizontal boundaries"]
+position = Vector2(-100, 144)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="right boundary" type="CollisionShape2D" parent="horizontal boundaries"]
+position = Vector2(612, 144)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_6phgx")
+
+[node name="enemy spawner" parent="." instance=ExtResource("3_styii")]
+enemies = Array[PackedScene]([ExtResource("4_lgosu"), ExtResource("5_onqnr")])
+spawn_time = 0.75
+total_enemies_to_spawn = 50

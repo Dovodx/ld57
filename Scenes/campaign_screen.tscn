@@ -1,0 +1,141 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq720cc4hih4n"]
+
+[ext_resource type="Script" uid="uid://ydll2ixs1yd7" path="res://Scripts/CampaignMenuScript.gd" id="1_180x7"]
+[ext_resource type="Theme" uid="uid://da5nolxjbph02" path="res://ui_theme.tres" id="1_oso1v"]
+
+[node name="campaign_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_180x7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4999.0
+offset_top = -4999.0
+offset_right = 5000.0
+offset_bottom = 5000.0
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 4.0
+offset_right = 94.0
+offset_bottom = 48.0
+grow_horizontal = 2
+pivot_offset = Vector2(200, 41)
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/normal_font_size = 32
+text = "Level Select"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="controls title" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 34.0
+offset_top = 53.0
+offset_right = 232.0
+offset_bottom = 107.0
+grow_horizontal = 2
+pivot_offset = Vector2(200, 41)
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/normal_font_size = 24
+text = "Controls:"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hint text" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 250.0
+offset_bottom = 226.0
+grow_horizontal = 2
+pivot_offset = Vector2(200, 41)
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/normal_font_size = 12
+text = "As you complete levels, your growing power will allow you to reach deeper into the depths of Pandora's Box. New calamities will become possible."
+scroll_active = false
+
+[node name="back button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 375.0
+offset_top = 230.0
+offset_right = 489.0
+offset_bottom = 260.0
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Back"
+
+[node name="button container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -243.0
+offset_top = -84.0
+offset_right = -11.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="level1" type="Button" parent="button container"]
+layout_mode = 2
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Level 1"
+
+[node name="level2" type="Button" parent="button container"]
+layout_mode = 2
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Level 2"
+
+[node name="level3" type="Button" parent="button container"]
+layout_mode = 2
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Level 3"
+
+[node name="level4" type="Button" parent="button container"]
+layout_mode = 2
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Level 4"
+
+[node name="level5" type="Button" parent="button container"]
+layout_mode = 2
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Level 5"
+
+[node name="level6" type="Button" parent="button container"]
+layout_mode = 2
+theme = ExtResource("1_oso1v")
+theme_override_font_sizes/font_size = 18
+text = "Level 6"
+
+[connection signal="pressed" from="back button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="button container/level1" to="." method="_on_level_button_pressed" binds= [1]]
+[connection signal="pressed" from="button container/level2" to="." method="_on_level_button_pressed" binds= [2]]
+[connection signal="pressed" from="button container/level3" to="." method="_on_level_button_pressed" binds= [3]]
+[connection signal="pressed" from="button container/level4" to="." method="_on_level_button_pressed" binds= [4]]
+[connection signal="pressed" from="button container/level5" to="." method="_on_level_button_pressed" binds= [5]]
+[connection signal="pressed" from="button container/level6" to="." method="_on_level_button_pressed" binds= [6]]

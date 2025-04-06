@@ -1,0 +1,274 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlknqh1c5yphi"]
+
+[ext_resource type="Theme" uid="uid://da5nolxjbph02" path="res://ui_theme.tres" id="1_g0xie"]
+[ext_resource type="Script" uid="uid://ckw1t837c0axd" path="res://Scripts/HudScript.gd" id="2_5kp3n"]
+[ext_resource type="PackedScene" uid="uid://d3x2t7bdi076b" path="res://Prefabs/options_menu.tscn" id="3_5kp3n"]
+
+[node name="hud" type="Control"]
+process_mode = 3
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+theme = ExtResource("1_g0xie")
+script = ExtResource("2_5kp3n")
+
+[node name="healthbar back" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 268.0
+offset_right = 212.0
+offset_bottom = 288.0
+color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[node name="healthbar fill" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 268.0
+offset_right = 165.255
+offset_bottom = 288.0
+color = Color(1, 0, 0, 1)
+
+[node name="hp label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 268.0
+offset_right = 28.0
+offset_bottom = 288.0
+bbcode_enabled = true
+text = "HP"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pandora back" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 268.0
+offset_right = 510.0
+offset_bottom = 288.0
+color = Color(0.121569, 0, 0.168627, 1)
+
+[node name="pandora fill" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 268.0
+offset_right = 463.255
+offset_bottom = 288.0
+color = Color(0.278915, 0.0289372, 0.355155, 1)
+
+[node name="pandora label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 268.0
+offset_right = 327.0
+offset_bottom = 288.0
+bbcode_enabled = true
+text = "Pandora"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="options_menu" parent="." instance=ExtResource("3_5kp3n")]
+visible = false
+layout_mode = 1
+
+[node name="death" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="death"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
+
+[node name="you died" type="RichTextLabel" parent="death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -124.0
+offset_right = 106.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 34
+text = "YOU DIED"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -62.0
+offset_right = 97.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="retry" type="Button" parent="death/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Retry"
+
+[node name="quit" type="Button" parent="death/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
+
+[node name="victory" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="victory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
+
+[node name="title" type="RichTextLabel" parent="victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -124.0
+offset_right = 121.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 34
+text = "Level Cleared!"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -51.0
+offset_right = 97.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="next" type="Button" parent="victory/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Next Level"
+
+[node name="quit" type="Button" parent="victory/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
+
+[node name="pause menu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="pause menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.419608)
+
+[node name="title" type="RichTextLabel" parent="pause menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -124.0
+offset_right = 106.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 34
+text = "Paused"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -62.0
+offset_right = 97.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="resume" type="Button" parent="pause menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="options" type="Button" parent="pause menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="quit" type="Button" parent="pause menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Back to menu"
+
+[connection signal="pressed" from="death/VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="death/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="victory/VBoxContainer/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="victory/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="pause menu/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="pause menu/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="pause menu/VBoxContainer/quit" to="." method="_on_quit_pressed"]

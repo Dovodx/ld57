@@ -18,12 +18,22 @@ maybe have a meter that you can build up to unleash different levels of chaos fr
 
 
 todo:
--sfx for everything
+✔sfx for everything
 -badass soundtrack
--make sure pausing works
+✔make sure pausing works
+✔level select with maybe 5 levels then a boss
+✔win screen
+✔next level button
+✔fix level transition bug (player does not reset, spawned pandora weapons stay, etc.)
+-swords suddenly insta-die and don't delete projectiles....
+-save data
+
+-have music continue between levels (except boss)
+
 ✔fixed objects not despawning on scene change (attach to root/level, not root)
 ✔fixed enemies 2 and 3 not damaging the player on collision
 -make swords capable of absorbing more projectiles before disappearing
+-sound for swords disappearing
 -enemy healthbars
 -enemy projectile interactions:
     ✔swords destroy enemy shots
@@ -31,10 +41,9 @@ todo:
     -make vacuum suck in enemy projectiles too
     -flamethrower?
     -flail destroys projectiles? maybe its role is to do damage rather than protect the player
--level select with maybe 5 levels then a boss
 -try using area2d with flamethrower, maybe it can work if it's not being re-enabled after spawning?
--make hitboxes track what they've already hit and exclude them so they don't get hit multiple times
--player ship
+-make hitboxes track what they've already hit and exclude them so they don't get hit multiple times?
+✔player ship
     ✔sprite (improve later, probably make smaller)
     ✔laser sprite
     ✔screen boundaries
@@ -46,15 +55,15 @@ todo:
     ✔laser sound
     ✔hit sound
     ✔boxy sounds
-    -ambient spooky sound for boxy
+    ✔ambient spooky sound for boxy
     ✔special pandora meter
 -weapons
     ✔RPG
         ✔projectile sprite
         ✔spawn projectile
         ✔explosion effect
-        -fire sound
-        -explode sound
+        ✔fire sound
+        ✔explode sound
     ✔vacuum
     Xgiant energy worm (hard to implement, lower priorty)
     ✔flail centered on player (does not hit enemy projectiles)
@@ -82,15 +91,15 @@ todo:
     ✔damage player
     ✔take damage
     ✔die
-    -sound effects
+    ✔sound effects
 ✔enemy 2
     ✔move around slowly
     ✔shoot in a spread pattern
-    -sfx
+    ✔sfx
 ✔enemy 3
     ✔move and stop
     ✔shoot bursts of 3 at player
-    -sfx
+    ✔sfx
 -hud
     ✔player health
     ✔PANDORA METER

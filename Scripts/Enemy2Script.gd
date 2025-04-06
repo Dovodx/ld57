@@ -34,6 +34,11 @@ func _physics_process(delta: float) -> void:
 	external_force *= external_force_decay
 
 func die():
+	var sound = get_node_or_null("death sound")
+	if sound != null:
+		sound.reparent(get_parent())
+		sound.connect("finished", sound.queue_free)
+		sound.play_sfx()
 	queue_free()
 
 func _on_shottimer_timeout() -> void:
@@ -41,6 +46,8 @@ func _on_shottimer_timeout() -> void:
 	shot.dir = Vector2.RIGHT.rotated(fire_angle)
 	shot.global_position = global_position
 	get_tree().root.get_node("level").add_child(shot)
+	$"shoot sound".play_sfx()
+	
 	if (fire_angle >= base_angle + deg_to_rad(angle_max) or
 		fire_angle <= base_angle - deg_to_rad(angle_max)):
 		angle_step *= -1

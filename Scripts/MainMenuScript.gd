@@ -1,7 +1,5 @@
 extends Node
 
-var level: PackedScene = preload("res://Scenes/level.tscn")
-
 func _ready():
 	$"options_menu/exit button".connect("pressed", close_options)
 
@@ -10,7 +8,7 @@ func close_options():
 	$options_menu.visible = false
 
 func _on_start_pressed():
-	get_tree().change_scene_to_packed(level)
+	get_tree().change_scene_to_packed(load("res://Scenes/campaign_screen.tscn"))
 
 func _on_options_pressed():
 	$options_bg.visible = true

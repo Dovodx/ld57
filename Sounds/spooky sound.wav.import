@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfebjyss1tq64"
+path="res://.godot/imported/spooky sound.wav-5919dfefdfded0c898e16ef3464b1488.sample"
+
+[deps]
+
+source_file="res://Sounds/spooky sound.wav"
+dest_files=["res://.godot/imported/spooky sound.wav-5919dfefdfded0c898e16ef3464b1488.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

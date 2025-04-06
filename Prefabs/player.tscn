@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5x8j0donbfxa"]
+
+[ext_resource type="Script" uid="uid://cr5xu4kagjcec" path="res://Scripts/PlayerScript.gd" id="1_hck1p"]
+[ext_resource type="Texture2D" uid="uid://dtd6kmbmaou43" path="res://Textures/player ship v2.png" id="2_juxdh"]
+[ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="3_4qbli"]
+[ext_resource type="AudioStream" uid="uid://ba1rcid2ww061" path="res://Sounds/player laser.wav" id="4_08u7w"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_kgmex"]
+[ext_resource type="AudioStream" uid="uid://dcg1tq1dh2c6d" path="res://Sounds/player hit.wav" id="6_2xbkd"]
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 50
+motion_mode = 1
+script = ExtResource("1_hck1p")
+
+[node name="sprite" type="Sprite2D" parent="."]
+z_index = 5
+texture = ExtResource("2_juxdh")
+
+[node name="healthnode" type="Node" parent="."]
+script = ExtResource("3_4qbli")
+health = 100.0
+maxhealth = 100.0
+
+[node name="laser sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_08u7w")
+volume_db = -13.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 5
+bus = &"SFX"
+script = ExtResource("5_kgmex")
+pitch_variance = 0.1
+
+[node name="hit sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2xbkd")
+volume_db = -5.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("5_kgmex")
+pitch_variance = 0.2
+
+[node name="laser timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
+
+[node name="collider" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(16, 16, 4, -16, -4, -16, -16, 16)
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="collider" type="CollisionPolygon2D" parent="hurtbox"]
+visible = false
+polygon = PackedVector2Array(11, 14, 10, -4, 3, -11, -3, -11, -10, -4, -11, 14)
+
+[connection signal="died" from="healthnode" to="." method="_on_healthnode_died"]
+[connection signal="area_entered" from="hurtbox" to="healthnode" method="hurtbox_hit"]
