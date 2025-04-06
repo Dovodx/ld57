@@ -17,9 +17,12 @@ texture = ExtResource("2_a1233")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-9, -26, 9, -26, 17, 12, -17, 12)
+disabled = true
 
 [node name="healthnode" type="Node" parent="."]
 script = ExtResource("3_70g80")
+health = 2.0
+maxhealth = 2.0
 team = 1
 
 [node name="hitbox" type="Area2D" parent="."]

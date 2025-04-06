@@ -7,9 +7,9 @@ func _ready():
 	$AnimationPlayer.play("open")
 
 func spawn_weapon():
-	var index = randi_range(3, prefabs.size() - 1)
+	var index = randi_range(0, prefabs.size() - 1)
 	var weapon = prefabs[index].instantiate()
-	if index == 2 or 3:
+	if index == 2 or index == 3 or index == 5:
 		get_node("/root/level/player").add_child(weapon)
 	else:
 		weapon.global_position = global_position

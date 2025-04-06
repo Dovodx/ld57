@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq6a07jjmxrrv"]
+
+[ext_resource type="Script" uid="uid://djco0ltb18wit" path="res://Scripts/Enemy2ShotScript.gd" id="1_bwbby"]
+[ext_resource type="Texture2D" uid="uid://ctsko1yctq0yp" path="res://Textures/enemy 2 shot.png" id="1_q5vla"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_bwbby"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5vla"]
+radius = 7.2111
+
+[node name="enemy 2 shot" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_bwbby")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5vla")
+
+[node name="hitbox" type="Area2D" parent="." node_paths=PackedStringArray("die_on_hit")]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("2_bwbby")
+team = 1
+damage = 3
+die_on_hit = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visible = false
+shape = SubResource("CircleShape2D_q5vla")
+
+[node name="deathtimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="was_hit" from="hitbox" to="." method="_on_hitbox_was_hit"]
+[connection signal="timeout" from="deathtimer" to="." method="queue_free"]

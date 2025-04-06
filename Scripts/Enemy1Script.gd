@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 200
+var speed = 100
 var external_force = Vector2.ZERO
 var external_force_decay = 0.99
 

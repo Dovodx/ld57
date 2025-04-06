@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://ccb1r6vtk8oj1"]
 
-[ext_resource type="Texture2D" uid="uid://ubfoeyx2i0ac" path="res://Textures/pandora/bounce laser.png" id="1_rckdb"]
 [ext_resource type="Script" uid="uid://m04uvn6ic2aa" path="res://Scripts/pandora/BounceLaserScript.gd" id="1_yi2y8"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_ccnxn"]
+[ext_resource type="Texture2D" uid="uid://dqi76caqukcwu" path="res://Textures/pandora/dvd logo.png" id="2_yi2y8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccnxn"]
-size = Vector2(10, 40)
+size = Vector2(54, 31)
 
 [sub_resource type="Gradient" id="Gradient_rckdb"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -17,28 +17,31 @@ gradient = SubResource("Gradient_rckdb")
 particle_flag_rotate_y = true
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.611765)
 color_ramp = SubResource("GradientTexture1D_ccnxn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rckdb"]
-size = Vector2(10, 40)
+size = Vector2(54, 31)
 
 [node name="bounce laser" type="CharacterBody2D"]
 modulate = Color(0.706346, 0, 1, 1)
 position = Vector2(191, 135)
 collision_layer = 0
-collision_mask = 48
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_yi2y8")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_rckdb")
+texture = ExtResource("2_yi2y8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2(1, -1.5)
 shape = SubResource("RectangleShape2D_ccnxn")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-texture = ExtResource("1_rckdb")
+texture = ExtResource("2_yi2y8")
+lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_rckdb")
 
 [node name="hitbox" type="Area2D" parent="."]
@@ -49,4 +52,13 @@ script = ExtResource("2_ccnxn")
 damage = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(1, -1.5)
 shape = SubResource("RectangleShape2D_rckdb")
+
+[node name="deathtimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="deathtimer" to="." method="queue_free"]

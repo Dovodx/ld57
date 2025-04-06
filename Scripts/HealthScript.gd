@@ -15,7 +15,6 @@ func hurtbox_hit(area: Area2D):
 
 func take_damage(damage):
 	if dead: return
-	print("taking damage, amount: " + str(damage))
 	health -= damage
 	if health <= 0:
 		die()

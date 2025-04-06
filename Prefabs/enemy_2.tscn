@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw2ynto3l1bnq"]
+
+[ext_resource type="Texture2D" uid="uid://i4tkdfdm6wji" path="res://Textures/enemy 2.png" id="1_7hp21"]
+[ext_resource type="Script" uid="uid://c1gtv3vhj7lwt" path="res://Scripts/Enemy2Script.gd" id="1_c2t8o"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_aa0ec"]
+[ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="3_8i732"]
+
+[node name="enemy 2" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_c2t8o")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_7hp21")
+
+[node name="healthnode" type="Node" parent="."]
+script = ExtResource("3_8i732")
+health = 3.0
+maxhealth = 3.0
+team = 1
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("2_aa0ec")
+team = 1
+damage = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox"]
+polygon = PackedVector2Array(-16, -20, 16, -20, 14, -6, 1, 22, -1, 22, -14, -6)
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hurtbox"]
+polygon = PackedVector2Array(-16, -20, 16, -20, 14, -6, 1, 22, -1, 22, -14, -6)
+
+[node name="shottimer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="directiontimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
+
+[connection signal="died" from="healthnode" to="." method="_on_healthnode_died"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="healthnode" method="hurtbox_hit"]
+[connection signal="timeout" from="shottimer" to="." method="_on_shottimer_timeout"]
+[connection signal="timeout" from="directiontimer" to="." method="_on_directiontimer_timeout"]

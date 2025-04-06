@@ -20,6 +20,9 @@ maybe have a meter that you can build up to unleash different levels of chaos fr
 todo:
 -sfx for everything
 -badass soundtrack
+-enemy healthbars
+-let player projectiles destroy enemy shots
+-make vacuum suck in enemy projectiles too
 -make hitboxes track what they've already hit and exclude them so they don't get hit multiple times
 -player ship
     ✔sprite (improve later, probably make smaller)
@@ -43,8 +46,8 @@ todo:
     Xgiant energy worm (hard to implement, lower priorty)
     ✔flail centered on player (does not hit enemy projectiles)
     ✔flamethrower
-    -laser that bounces around the screen
-    -summoned swords lol (can cancel out enemy projectiles)
+    ✔DVD logo
+    ✔summoned swords lol (can cancel out enemy projectiles)
     -bat swarm (steals health?)
     -tornado
     -acid rain
@@ -67,11 +70,15 @@ todo:
     ✔take damage
     ✔die
     -sound effects
--enemy 2
-    -move around slowly
-    -shoot at player
+✔enemy 2
+    ✔move around slowly
+    ✔shoot in a spread pattern
+    -sfx
+-enemy 3
+    -move and stop
+    -shoot bursts of 3 at player
 -hud
     ✔player health
     ✔PANDORA METER
     ✔death screen
-    -show if upgrade available? or split meter into X number of levels
+    -split meter into X number of levels
