@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhmk1c7vsukmi"]
+[gd_scene load_steps=7 format=3 uid="uid://bhmk1c7vsukmi"]
 
 [ext_resource type="Texture2D" uid="uid://bqxkqbm00lont" path="res://Textures/pandora/rocket.png" id="1_irkkf"]
 [ext_resource type="Script" uid="uid://babbfeffw5yx6" path="res://Scripts/pandora/RocketScript.gd" id="1_uunle"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="3_0id76"]
+[ext_resource type="AudioStream" uid="uid://b1fa3lekboo0f" path="res://Sounds/explode 2.wav" id="3_mw10y"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="4_fllap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uunle"]
 size = Vector2(22, 39)
@@ -15,6 +17,17 @@ script = ExtResource("1_uunle")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_irkkf")
+
+[node name="launch sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mw10y")
+volume_db = -5.0
+autoplay = true
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("4_fllap")
+pitch_variance = 0.1
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 4

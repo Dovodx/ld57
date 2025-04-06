@@ -13,4 +13,4 @@ func spawn_weapon():
 		get_node("/root/level/player").add_child(weapon)
 	else:
 		weapon.global_position = global_position
-		get_tree().root.add_child(weapon)
+		get_tree().root.get_node("level").add_child(weapon)

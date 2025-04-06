@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dks5qnhcoqe1g"]
+[gd_scene load_steps=10 format=3 uid="uid://dks5qnhcoqe1g"]
 
 [ext_resource type="Script" uid="uid://cpqwhbtsy23n5" path="res://Scripts/pandora/ExplosionScript.gd" id="1_hy424"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="1_pngfq"]
 [ext_resource type="Texture2D" uid="uid://bk0srlbmsicqk" path="res://Textures/pandora/rocket explosion particle.png" id="2_ly2lc"]
+[ext_resource type="AudioStream" uid="uid://c3am3xjthgfmt" path="res://Sounds/explode.wav" id="4_kmkt7"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_i4c4s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pngfq"]
 radius = 57.0
@@ -30,6 +32,17 @@ color_ramp = SubResource("GradientTexture1D_hy424")
 
 [node name="rocket explosion" type="Node2D"]
 script = ExtResource("1_hy424")
+
+[node name="explode sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kmkt7")
+volume_db = -4.0
+autoplay = true
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("5_i4c4s")
+pitch_variance = 0.1
 
 [node name="hitbox" type="Area2D" parent="."]
 script = ExtResource("1_pngfq")

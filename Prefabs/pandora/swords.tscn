@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dys32k8d10uat"]
+[gd_scene load_steps=6 format=3 uid="uid://dys32k8d10uat"]
 
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="1_68yox"]
 [ext_resource type="Script" uid="uid://b2at8ixb76fli" path="res://Scripts/pandora/SwordsScript.gd" id="1_dftmn"]
 [ext_resource type="Texture2D" uid="uid://ds2yrr2xhykp" path="res://Textures/pandora/summoned sword.png" id="1_v3wob"]
+[ext_resource type="AudioStream" uid="uid://dagmaae1t866x" path="res://Sounds/swords appear.wav" id="4_lasdh"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_c7he7"]
 
 [node name="swords" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_dftmn")
 
 [node name="hitbox" type="Area2D" parent="." node_paths=PackedStringArray("die_on_hit")]
@@ -19,6 +24,19 @@ die_on_hit = NodePath(".")
 texture = ExtResource("1_v3wob")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox"]
+visible = false
 polygon = PackedVector2Array(-7, -23, -1, -29, 1, -29, 7, -23, 13, 4, 14, 17, 4, 28, -4, 28, -14, 17, -13, 4)
 
+[node name="suck sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lasdh")
+volume_db = -5.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("5_c7he7")
+pitch_variance = 0.1
+
+[connection signal="area_entered" from="hitbox" to="hitbox" method="_on_area_entered"]
 [connection signal="was_hit" from="hitbox" to="hitbox" method="_on_was_hit"]
+[connection signal="ready" from="suck sound" to="suck sound" method="play_sfx"]

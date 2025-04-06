@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ow2uhaljlqxs"]
+[gd_scene load_steps=15 format=3 uid="uid://ow2uhaljlqxs"]
 
 [ext_resource type="Script" uid="uid://cntls1yq8u7sd" path="res://Scripts/pandora/VacuumScript.gd" id="1_b81n0"]
 [ext_resource type="Texture2D" uid="uid://n1wrfl8710mi" path="res://Textures/pandora/vacuum.png" id="1_r8y4i"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_s6rhe"]
 [ext_resource type="Texture2D" uid="uid://bywxgle5q76lu" path="res://Textures/pandora/vacuum dust.png" id="4_1a5yh"]
+[ext_resource type="AudioStream" uid="uid://dhk75t111bt6w" path="res://Sounds/suck v2.wav" id="5_3msxj"]
+[ext_resource type="AudioStream" uid="uid://8c3ks44325fp" path="res://Sounds/flames v2.wav" id="5_lottt"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_lottt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8y4i"]
 size = Vector2(30, 14)
@@ -24,6 +27,69 @@ gravity = Vector3(0, 0, 0)
 radial_accel_min = -87.55
 radial_accel_max = -87.55
 color_ramp = SubResource("GradientTexture1D_m2ufo")
+
+[sub_resource type="Animation" id="Animation_m2ufo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("suck:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hitbox:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1a5yh"]
 resource_name = "suck"
@@ -104,69 +170,6 @@ tracks/5/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_m2ufo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("suck:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("hitbox:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2ufo"]
 _data = {
 &"RESET": SubResource("Animation_m2ufo"),
@@ -195,9 +198,11 @@ polygon = PackedVector2Array(-12, -10, -107, -110, 107, -110, 9, -10)
 
 [node name="hitbox" type="Area2D" parent="."]
 visible = false
+collision_layer = 4
+collision_mask = 10
 monitoring = false
 script = ExtResource("2_s6rhe")
-damage = 100
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-2, -7)
@@ -215,5 +220,26 @@ libraries = {
 &"": SubResource("AnimationLibrary_m2ufo")
 }
 
+[node name="vacuum sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lottt")
+volume_db = -5.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("6_lottt")
+pitch_variance = 0.1
+
+[node name="scoop sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3msxj")
+volume_db = -2.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("6_lottt")
+pitch_variance = 0.1
+
 [connection signal="body_entered" from="suck" to="." method="_on_suck_body_entered"]
 [connection signal="body_exited" from="suck" to="." method="_on_suck_body_exited"]
+[connection signal="was_hit" from="hitbox" to="scoop sound" method="play_sfx"]

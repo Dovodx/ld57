@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="3_8i732"]
 
 [node name="enemy 2" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_c2t8o")
 
@@ -19,7 +21,7 @@ maxhealth = 3.0
 team = 1
 
 [node name="hitbox" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("2_aa0ec")
 team = 1
 damage = 5

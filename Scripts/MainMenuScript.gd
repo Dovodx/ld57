@@ -1,6 +1,6 @@
 extends Node
 
-@export var level: PackedScene
+var level: PackedScene = preload("res://Scenes/level.tscn")
 
 func _ready():
 	$"options_menu/exit button".connect("pressed", close_options)

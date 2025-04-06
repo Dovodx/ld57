@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bhggyqlohxd4m"
+path="res://.godot/imported/die beep.wav-de577a03f13f0d02a4599491de1c65a9.sample"
+
+[deps]
+
+source_file="res://Sounds/die beep.wav"
+dest_files=["res://.godot/imported/die beep.wav-de577a03f13f0d02a4599491de1c65a9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

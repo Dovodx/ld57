@@ -12,4 +12,4 @@ func _on_timer_timeout() -> void:
 	var newenemy = enemies[i].instantiate()
 	newenemy.global_position = Vector2(randf_range(26, 486), -36)
 	newenemy.add_to_group("enemies") #maybe use different group for bosses if I get to those
-	get_tree().root.add_child(newenemy)
+	get_tree().root.get_node("level").add_child(newenemy)

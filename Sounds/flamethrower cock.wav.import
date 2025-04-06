@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjukpvoyksu7n"
+path="res://.godot/imported/flamethrower cock.wav-f408b37e3b376570312579d27800738c.sample"
+
+[deps]
+
+source_file="res://Sounds/flamethrower cock.wav"
+dest_files=["res://.godot/imported/flamethrower cock.wav-f408b37e3b376570312579d27800738c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

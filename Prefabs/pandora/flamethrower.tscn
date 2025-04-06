@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://l8uoj3nyjg7a"]
+[gd_scene load_steps=14 format=3 uid="uid://l8uoj3nyjg7a"]
 
 [ext_resource type="Script" uid="uid://cxgwg5snrvmmb" path="res://Scripts/pandora/FlamethrowerScript.gd" id="1_g4bbo"]
 [ext_resource type="Texture2D" uid="uid://1poelbjstdh3" path="res://Textures/pandora/flamethrower.png" id="1_mrwux"]
 [ext_resource type="Texture2D" uid="uid://dvdoevwle2ryi" path="res://Textures/pandora/fire particle.png" id="2_sgfmj"]
+[ext_resource type="AudioStream" uid="uid://8c3ks44325fp" path="res://Sounds/flames v2.wav" id="4_bbbrw"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_ivvco"]
+[ext_resource type="AudioStream" uid="uid://cjukpvoyksu7n" path="res://Sounds/flamethrower cock.wav" id="6_ivvco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrwux"]
 size = Vector2(88, 130)
@@ -27,6 +30,45 @@ scale_min = 1.5
 scale_max = 1.5
 color = Color(1, 0, 0, 0.580392)
 color_ramp = SubResource("GradientTexture1D_g4bbo")
+
+[sub_resource type="Animation" id="Animation_0gifn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hitbox_active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_g4bbo"]
 resource_name = "flame"
@@ -82,44 +124,33 @@ tracks/3/keys = {
 "method": &"queue_free"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_0gifn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("flame sound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [{
+"args": [],
+"method": &"play_sfx"
+}]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("cock sound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:hitbox_active")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [{
+"args": [],
+"method": &"play_sfx"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0gifn"]
@@ -154,3 +185,23 @@ process_material = SubResource("ParticleProcessMaterial_g4bbo")
 libraries = {
 &"": SubResource("AnimationLibrary_0gifn")
 }
+
+[node name="flame sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bbbrw")
+volume_db = -8.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("5_ivvco")
+pitch_variance = 0.02
+
+[node name="cock sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ivvco")
+volume_db = -8.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("5_ivvco")
+pitch_variance = 0.02

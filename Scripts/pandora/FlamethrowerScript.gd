@@ -14,5 +14,4 @@ func _physics_process(delta: float) -> void:
 			item.global_position.y < $box.global_position.y + $box.shape.size.y / 1.8 and
 			item.global_position.x > $box.global_position.x - $box.shape.size.x / 1.8 and
 			item.global_position.x < $box.global_position.x + $box.shape.size.x / 1.8):
-			print("hit with flames")
 			item.get_node("healthnode").take_damage(damage)

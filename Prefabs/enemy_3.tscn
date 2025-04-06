@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="3_eiivr"]
 
 [node name="enemy 3" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_cd5w6")
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -17,7 +19,7 @@ team = 1
 
 [node name="hitbox" type="Area2D" parent="."]
 visible = false
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("3_eiivr")
 team = 1
 damage = 5
@@ -35,7 +37,7 @@ polygon = PackedVector2Array(-20, -18, 20, -18, 20, -9, 13, 5, 5, 16, -5, 16, -1
 
 [node name="shottimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 
 [node name="movetimer" type="Timer" parent="."]

@@ -2,15 +2,16 @@ extends CharacterBody2D
 
 var speed = 200
 var travel_angle = 0
-var angle_min = 10
-var angle_max = 40
+var angle_min = 40
+var angle_max = 50
 var xmax = 512 - 24
 var xmin = 24
 var ymax = 288 - 16
 var ymin = 16
 
 func _ready() -> void:
-	travel_angle = randf_range(angle_min, angle_max) * sign(randf_range(-1, 1))
+	travel_angle = deg_to_rad(randf_range(angle_min, angle_max) * sign(randf_range(-1, 1))
+		+ randi_range(0, 1) * 180)
 
 func _physics_process(delta: float) -> void:
 	var angle = Vector2.RIGHT.rotated(travel_angle)

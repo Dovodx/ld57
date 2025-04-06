@@ -10,7 +10,7 @@ var pandora_prefab = preload("res://Prefabs/pandora's_box.tscn")
 var healthbar_max_size = 184.0
 
 @onready var pandorabar_fill = $"/root/level/hud/pandora fill"
-var pandora_meter = 0.0
+var pandora_meter = 100.0
 var pandora_max = 100.0
 var pandora_laser_add = 1
 
@@ -35,8 +35,9 @@ func _physics_process(delta: float):
 		var tospawn = laser_prefab.instantiate()
 		tospawn.get_node("hitbox").was_hit.connect(laser_hit)
 		tospawn.global_position = global_position + Vector2.UP * 20
-		get_tree().root.add_child(tospawn)
+		get_tree().root.get_node("level").add_child(tospawn)
 		laser_timer.start(laser_cooldown)
+		$"laser sound".play_sfx()
 	
 	if Input.is_action_just_pressed("secondary_fire") && pandora_meter >= 25:
 		pandora_meter -= 25
@@ -56,7 +57,7 @@ func _on_healthnode_died():
 	get_tree().root.get_node("level/enemy spawner/timer").stop()
 
 func _on_retry_pressed() -> void:
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_packed(load("res://Scenes/level.tscn"))
 
 func _on_quit_pressed() -> void:
 	get_tree().change_scene_to_packed(load("res://Scenes/main_menu.tscn"))

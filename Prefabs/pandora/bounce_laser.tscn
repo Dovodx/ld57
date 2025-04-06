@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccb1r6vtk8oj1"]
+[gd_scene load_steps=10 format=3 uid="uid://ccb1r6vtk8oj1"]
 
 [ext_resource type="Script" uid="uid://m04uvn6ic2aa" path="res://Scripts/pandora/BounceLaserScript.gd" id="1_yi2y8"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_ccnxn"]
 [ext_resource type="Texture2D" uid="uid://dqi76caqukcwu" path="res://Textures/pandora/dvd logo.png" id="2_yi2y8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccnxn"]
-size = Vector2(54, 31)
+[ext_resource type="AudioStream" uid="uid://di5a46hc7hdx3" path="res://Sounds/DVD.wav" id="4_iejqu"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="5_076hc"]
 
 [sub_resource type="Gradient" id="Gradient_rckdb"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -34,11 +33,6 @@ script = ExtResource("1_yi2y8")
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_yi2y8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, -1.5)
-shape = SubResource("RectangleShape2D_ccnxn")
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture = ExtResource("2_yi2y8")
 lifetime = 0.5
@@ -47,9 +41,10 @@ process_material = SubResource("ParticleProcessMaterial_rckdb")
 [node name="hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 4
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("2_ccnxn")
 damage = 3
+clear_enemy_projectiles = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(1, -1.5)
@@ -57,8 +52,20 @@ shape = SubResource("RectangleShape2D_rckdb")
 
 [node name="deathtimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 7.0
+wait_time = 9.0
 one_shot = true
 autostart = true
 
+[node name="DVD sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_iejqu")
+volume_db = -2.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("5_076hc")
+pitch_variance = 0.1
+
+[connection signal="area_entered" from="hitbox" to="hitbox" method="_on_area_entered"]
 [connection signal="timeout" from="deathtimer" to="." method="queue_free"]
+[connection signal="ready" from="DVD sound" to="DVD sound" method="play_sfx"]

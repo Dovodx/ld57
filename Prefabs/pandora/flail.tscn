@@ -1,12 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://nm1q3080p2f8"]
+[gd_scene load_steps=11 format=3 uid="uid://nm1q3080p2f8"]
 
 [ext_resource type="Script" uid="uid://c74aq7dxl0mpw" path="res://Scripts/pandora/FlailScript.gd" id="1_0l24l"]
 [ext_resource type="Texture2D" uid="uid://bkd283nl8qeg3" path="res://Textures/pandora/flail ball.png" id="1_6wm2o"]
 [ext_resource type="Texture2D" uid="uid://dylkcj3dk3cde" path="res://Textures/pandora/flail chain.png" id="1_w45bo"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_w6qna"]
+[ext_resource type="AudioStream" uid="uid://b1rugaru0ougn" path="res://Sounds/flail swing.wav" id="5_7lr1u"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_bs6jd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w6qna"]
 radius = 34.0147
+
+[sub_resource type="Animation" id="Animation_0l24l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ball:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_w45bo"]
 resource_name = "swing"
@@ -25,20 +42,19 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 6.28319]
 }
-
-[sub_resource type="Animation" id="Animation_0l24l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ball:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("swing sound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0166667),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"values": [{
+"args": [],
+"method": &"play_sfx"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_trm2t"]
@@ -81,5 +97,14 @@ process_callback = 0
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="swing sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7lr1u")
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("6_bs6jd")
+pitch_variance = 0.05
 
 [connection signal="timeout" from="deathtimer" to="." method="queue_free"]

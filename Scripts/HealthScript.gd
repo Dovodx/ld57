@@ -16,6 +16,8 @@ func hurtbox_hit(area: Area2D):
 func take_damage(damage):
 	if dead: return
 	health -= damage
+	if get_node_or_null("../hit sound") != null:
+		$"../hit sound".play_sfx()
 	if health <= 0:
 		die()
 

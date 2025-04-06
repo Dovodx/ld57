@@ -40,7 +40,7 @@ func _on_shottimer_timeout() -> void:
 	if current_shot_count < num_shots:
 		var shot = shot_prefab.instantiate()
 		shot.global_position = global_position
-		get_tree().root.add_child(shot)
+		get_tree().root.get_node("level").add_child(shot)
 		shot.dir = global_position.direction_to(get_node("/root/level/player").global_position)
 		current_shot_count += 1
 		$shottimer.start()

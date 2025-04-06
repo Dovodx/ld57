@@ -5,7 +5,7 @@ var speed = 50
 var external_force = Vector2.ZERO
 var external_force_decay = 0.99
 var dir = Vector2.DOWN
-var firerate = 1.2
+var firerate = 1.6
 var fire_angle = Vector2.DOWN.angle()
 var base_angle = Vector2.DOWN.angle()
 var angle_max = 45
@@ -40,7 +40,7 @@ func _on_shottimer_timeout() -> void:
 	var shot = shot_prefab.instantiate()
 	shot.dir = Vector2.RIGHT.rotated(fire_angle)
 	shot.global_position = global_position
-	get_tree().root.add_child(shot)
+	get_tree().root.get_node("level").add_child(shot)
 	if (fire_angle >= base_angle + deg_to_rad(angle_max) or
 		fire_angle <= base_angle - deg_to_rad(angle_max)):
 		angle_step *= -1

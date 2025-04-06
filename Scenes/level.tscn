@@ -1,12 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg4fnd0lydoit"]
+[gd_scene load_steps=13 format=3 uid="uid://dg4fnd0lydoit"]
 
 [ext_resource type="Script" uid="uid://cr5xu4kagjcec" path="res://Scripts/PlayerScript.gd" id="1_6phgx"]
 [ext_resource type="Script" uid="uid://bug6h2l363i5u" path="res://Scripts/EnemySpawnerScript.gd" id="3_6phgx"]
 [ext_resource type="Texture2D" uid="uid://dtd6kmbmaou43" path="res://Textures/player ship v2.png" id="3_wqkje"]
 [ext_resource type="Theme" uid="uid://da5nolxjbph02" path="res://ui_theme.tres" id="4_81xng"]
+[ext_resource type="AudioStream" uid="uid://ba1rcid2ww061" path="res://Sounds/player laser.wav" id="5_bvt00"]
 [ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="5_wqkje"]
 [ext_resource type="PackedScene" uid="uid://cw8iajn5s7gcu" path="res://Prefabs/enemy_1.tscn" id="6_0f350"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_oqgf2"]
 [ext_resource type="PackedScene" uid="uid://bw2ynto3l1bnq" path="res://Prefabs/enemy_2.tscn" id="7_8c0lf"]
+[ext_resource type="AudioStream" uid="uid://dcg1tq1dh2c6d" path="res://Sounds/player hit.wav" id="7_qxfql"]
 [ext_resource type="PackedScene" uid="uid://dyxmsd0vjsoh8" path="res://Prefabs/enemy_3.tscn" id="8_754fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
@@ -161,6 +164,26 @@ texture = ExtResource("3_wqkje")
 script = ExtResource("5_wqkje")
 health = 100.0
 maxhealth = 100.0
+
+[node name="laser sound" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("5_bvt00")
+volume_db = -13.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 5
+bus = &"SFX"
+script = ExtResource("6_oqgf2")
+pitch_variance = 0.1
+
+[node name="hit sound" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("7_qxfql")
+volume_db = -5.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("6_oqgf2")
+pitch_variance = 0.2
 
 [node name="laser timer" type="Timer" parent="player"]
 process_callback = 0

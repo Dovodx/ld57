@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://8c3ks44325fp"
+path="res://.godot/imported/flames v2.wav-4d566e99a69a55a384ecc794f627e862.sample"
+
+[deps]
+
+source_file="res://Sounds/flames v2.wav"
+dest_files=["res://.godot/imported/flames v2.wav-4d566e99a69a55a384ecc794f627e862.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

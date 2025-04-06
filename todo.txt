@@ -21,11 +21,13 @@ todo:
 -sfx for everything
 -badass soundtrack
 -make sure pausing works
--fix enemy projectiles persisting after exiting level LOL
+✔fixed objects not despawning on scene change (attach to root/level, not root)
+✔fixed enemies 2 and 3 not damaging the player on collision
+-make swords capable of absorbing more projectiles before disappearing
 -enemy healthbars
 -enemy projectile interactions:
-    -swords destroy enemy shots
-    -DVD delete
+    ✔swords destroy enemy shots
+    ✔DVD delete
     -make vacuum suck in enemy projectiles too
     -flamethrower?
     -flail destroys projectiles? maybe its role is to do damage rather than protect the player
@@ -41,7 +43,10 @@ todo:
     ✔die
     ✔summon THE BOX
     ✔box spawns random weapon or projectile
-    -boxy sounds
+    ✔laser sound
+    ✔hit sound
+    ✔boxy sounds
+    -ambient spooky sound for boxy
     ✔special pandora meter
 -weapons
     ✔RPG

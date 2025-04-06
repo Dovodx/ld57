@@ -13,5 +13,5 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if node_hit.team != 0:
 		var explode = explosion_prefab.instantiate()
 		explode.global_position = global_position
-		get_tree().root.call_deferred("add_child", explode)
+		get_tree().root.get_node("level").call_deferred("add_child", explode)
 		call_deferred("queue_free")
