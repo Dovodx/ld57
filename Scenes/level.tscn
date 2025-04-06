@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg4fnd0lydoit"]
+[gd_scene load_steps=10 format=3 uid="uid://dg4fnd0lydoit"]
 
 [ext_resource type="Script" uid="uid://cr5xu4kagjcec" path="res://Scripts/PlayerScript.gd" id="1_6phgx"]
 [ext_resource type="Script" uid="uid://bug6h2l363i5u" path="res://Scripts/EnemySpawnerScript.gd" id="3_6phgx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="5_wqkje"]
 [ext_resource type="PackedScene" uid="uid://cw8iajn5s7gcu" path="res://Prefabs/enemy_1.tscn" id="6_0f350"]
 [ext_resource type="PackedScene" uid="uid://bw2ynto3l1bnq" path="res://Prefabs/enemy_2.tscn" id="7_8c0lf"]
+[ext_resource type="PackedScene" uid="uid://dyxmsd0vjsoh8" path="res://Prefabs/enemy_3.tscn" id="8_754fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6phgx"]
 size = Vector2(9000, 200)
@@ -206,7 +207,7 @@ shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="enemy spawner" type="Node" parent="."]
 script = ExtResource("3_6phgx")
-enemies = Array[PackedScene]([ExtResource("6_0f350"), ExtResource("7_8c0lf")])
+enemies = Array[PackedScene]([ExtResource("6_0f350"), ExtResource("7_8c0lf"), ExtResource("8_754fn")])
 
 [node name="timer" type="Timer" parent="enemy spawner"]
 process_callback = 0

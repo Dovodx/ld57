@@ -5,6 +5,8 @@ extends Node
 func _ready() -> void:
 	$timer.wait_time = 0.5
 
+#todo: limit total number of enemies spawned?
+
 func _on_timer_timeout() -> void:
 	var i = randi_range(0, enemies.size() - 1)
 	var newenemy = enemies[i].instantiate()

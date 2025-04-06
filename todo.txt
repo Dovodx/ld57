@@ -21,8 +21,13 @@ todo:
 -sfx for everything
 -badass soundtrack
 -enemy healthbars
--let player projectiles destroy enemy shots
--make vacuum suck in enemy projectiles too
+-enemy projectile interactions:
+    -swords destroy enemy shots
+    -DVD delete
+    -make vacuum suck in enemy projectiles too
+    -flamethrower?
+    -flail destroys projectiles? maybe its role is to do damage rather than protect the player
+-level select with maybe 5 levels then a boss
 -make hitboxes track what they've already hit and exclude them so they don't get hit multiple times
 -player ship
     ✔sprite (improve later, probably make smaller)
@@ -58,12 +63,12 @@ todo:
     -player clones
     -spinning blade that travels around the screen
     -meteor shower
-    -legally distinct crash bandicoot TNT
+    -legally distinct crash bandicoot TNT with funny countdown
     -a soothing song that puts enemies to sleep
     -W guy returns!?!?!?
     -minigun, for maximum pleasure
 ✔test level
--enemy 1
+✔enemy 1
     ✔moves straight down to ram into player with spikes
     ✔sprite
     ✔damage player
@@ -74,11 +79,12 @@ todo:
     ✔move around slowly
     ✔shoot in a spread pattern
     -sfx
--enemy 3
-    -move and stop
-    -shoot bursts of 3 at player
+✔enemy 3
+    ✔move and stop
+    ✔shoot bursts of 3 at player
+    -sfx
 -hud
     ✔player health
     ✔PANDORA METER
     ✔death screen
-    -split meter into X number of levels
+    -split meter into X number of levels?

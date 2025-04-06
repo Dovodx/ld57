@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyxmsd0vjsoh8"]
+
+[ext_resource type="Script" uid="uid://c5lcixbciy1sy" path="res://Scripts/Enemy3Script.gd" id="1_cd5w6"]
+[ext_resource type="Texture2D" uid="uid://cb0isf7yb1b0e" path="res://Textures/enemy 3.png" id="1_nmv7x"]
+[ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="2_cd5w6"]
+[ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="3_eiivr"]
+
+[node name="enemy 3" type="CharacterBody2D"]
+script = ExtResource("1_cd5w6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nmv7x")
+
+[node name="healthnode" type="Node" parent="."]
+script = ExtResource("2_cd5w6")
+team = 1
+
+[node name="hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+script = ExtResource("3_eiivr")
+team = 1
+damage = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox"]
+polygon = PackedVector2Array(-20, -18, 20, -18, 20, -9, 13, 5, 5, 16, -5, 16, -13, 5, -20, -9)
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hurtbox"]
+polygon = PackedVector2Array(-20, -18, 20, -18, 20, -9, 13, 5, 5, 16, -5, 16, -13, 5, -20, -9)
+
+[node name="shottimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
+[node name="movetimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[node name="stoptimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+
+[connection signal="died" from="healthnode" to="." method="_on_healthnode_died"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="healthnode" method="hurtbox_hit"]
+[connection signal="timeout" from="shottimer" to="." method="_on_shottimer_timeout"]
+[connection signal="timeout" from="movetimer" to="." method="_on_movetimer_timeout"]
+[connection signal="timeout" from="stoptimer" to="." method="_on_stoptimer_timeout"]

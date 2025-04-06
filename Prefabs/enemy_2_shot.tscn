@@ -10,6 +10,7 @@ radius = 7.2111
 [node name="enemy 2 shot" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_bwbby")
 
 [node name="sprite" type="Sprite2D" parent="."]
