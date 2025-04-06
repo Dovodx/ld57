@@ -20,6 +20,8 @@ maybe have a meter that you can build up to unleash different levels of chaos fr
 todo:
 -sfx for everything
 -badass soundtrack
+-make sure pausing works
+-fix enemy projectiles persisting after exiting level LOL
 -enemy healthbars
 -enemy projectile interactions:
     -swords destroy enemy shots
@@ -28,6 +30,7 @@ todo:
     -flamethrower?
     -flail destroys projectiles? maybe its role is to do damage rather than protect the player
 -level select with maybe 5 levels then a boss
+-try using area2d with flamethrower, maybe it can work if it's not being re-enabled after spawning?
 -make hitboxes track what they've already hit and exclude them so they don't get hit multiple times
 -player ship
     ✔sprite (improve later, probably make smaller)
