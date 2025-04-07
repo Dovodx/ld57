@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdl8a31u7bq00"]
+
+[ext_resource type="Texture2D" uid="uid://cvgb4xr67bpam" path="res://Textures/pandora/bomb 3.png" id="1_0vnio"]
+[ext_resource type="Script" uid="uid://dfuiun0mm4o5v" path="res://Scripts/pandora/BombScript.gd" id="1_c6goc"]
+[ext_resource type="AudioStream" uid="uid://ddtv703ufvmpj" path="res://Sounds/count three.wav" id="1_t6l70"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="2_t6l70"]
+[ext_resource type="AudioStream" uid="uid://dbi64hs88qjha" path="res://Sounds/count two.wav" id="3_d4hgn"]
+[ext_resource type="AudioStream" uid="uid://7fcj44tsajc3" path="res://Sounds/count one.wav" id="4_d4hgn"]
+[ext_resource type="Texture2D" uid="uid://bhqhyhsks2rbm" path="res://Textures/pandora/bomb 2.png" id="6_nxyj0"]
+[ext_resource type="Texture2D" uid="uid://dhy45tf4tgtv6" path="res://Textures/pandora/bomb 1.png" id="7_l2isb"]
+
+[sub_resource type="Animation" id="Animation_0vnio"]
+resource_name = "countdown"
+length = 3.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_0vnio"), ExtResource("6_nxyj0"), ExtResource("7_l2isb")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explode"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nxyj0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_0vnio")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxyj0"]
+_data = {
+&"RESET": SubResource("Animation_nxyj0"),
+&"countdown": SubResource("Animation_0vnio")
+}
+
+[node name="bomb" type="Node2D"]
+script = ExtResource("1_c6goc")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_0vnio")
+
+[node name="sound 3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_t6l70")
+autoplay = true
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("2_t6l70")
+pitch_variance = 0.05
+
+[node name="sound 2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_d4hgn")
+volume_db = -5.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("2_t6l70")
+pitch_variance = 0.05
+
+[node name="sound 1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_d4hgn")
+volume_db = -5.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("2_t6l70")
+pitch_variance = 0.05
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nxyj0")
+}
+autoplay = "countdown"

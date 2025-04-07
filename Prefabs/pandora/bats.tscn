@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8vls6fo3s683"]
+[gd_scene load_steps=14 format=3 uid="uid://c8vls6fo3s683"]
 
 [ext_resource type="Script" uid="uid://c8740t8r4y65i" path="res://Scripts/pandora/BatsScript.gd" id="1_bn44a"]
 [ext_resource type="Texture2D" uid="uid://c30m6ho1s0um4" path="res://Textures/pandora/bat 1.png" id="1_gh2kg"]
 [ext_resource type="Script" uid="uid://buqt0ou6cf8x7" path="res://Scripts/HitboxScript.gd" id="2_ijneh"]
 [ext_resource type="Texture2D" uid="uid://bj03kcswfmpy6" path="res://Textures/pandora/bat 2.png" id="2_jd3rk"]
+[ext_resource type="AudioStream" uid="uid://3xm10t3e6o0v" path="res://Sounds/bat flap.wav" id="5_u3ian"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_8pcby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn44a"]
 size = Vector2(140, 140)
@@ -27,6 +29,21 @@ radial_accel_min = -178.55
 radial_accel_max = -178.55
 color_ramp = SubResource("GradientTexture1D_ijneh")
 
+[sub_resource type="Animation" id="Animation_u3ian"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_gh2kg")]
+}
+
 [sub_resource type="Animation" id="Animation_kt7se"]
 resource_name = "flap"
 length = 0.200002
@@ -43,21 +60,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("1_gh2kg"), ExtResource("2_jd3rk")]
-}
-
-[sub_resource type="Animation" id="Animation_u3ian"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_gh2kg")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8pcby"]
@@ -107,6 +109,22 @@ wait_time = 8.0
 one_shot = true
 autostart = true
 
+[node name="sound timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+autostart = true
+
+[node name="bat sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u3ian")
+volume_db = -7.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("6_8pcby")
+pitch_variance = 0.25
+
 [connection signal="timeout" from="hit timer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="target timer" to="." method="_on_target_timer_timeout"]
 [connection signal="timeout" from="death timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="sound timer" to="bat sound" method="play_sfx"]

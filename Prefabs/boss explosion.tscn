@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuglmrfmgu76s"]
+
+[ext_resource type="Script" uid="uid://cpqwhbtsy23n5" path="res://Scripts/pandora/ExplosionScript.gd" id="1_1h7so"]
+[ext_resource type="AudioStream" uid="uid://druaq3puxh7pj" path="res://Sounds/boss explode v2.wav" id="2_78mvk"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="3_of007"]
+[ext_resource type="Texture2D" uid="uid://bk0srlbmsicqk" path="res://Textures/pandora/rocket explosion particle.png" id="5_jnt8t"]
+
+[sub_resource type="Gradient" id="Gradient_ly2lc"]
+colors = PackedColorArray(1, 1, 1, 0.909804, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hy424"]
+gradient = SubResource("Gradient_ly2lc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hy424"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 7.57
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 98.25
+initial_velocity_max = 98.25
+gravity = Vector3(0, 0, 0)
+scale_min = 5.6
+scale_max = 5.6
+color = Color(0, 0.841165, 1, 1)
+color_ramp = SubResource("GradientTexture1D_hy424")
+
+[node name="boss explosion" type="Node2D"]
+script = ExtResource("1_1h7so")
+
+[node name="explode sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_78mvk")
+autoplay = true
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("3_of007")
+pitch_variance = 0.1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+texture = ExtResource("5_jnt8t")
+lifetime = 2.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hy424")
+
+[node name="deathtimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="deathtimer" to="." method="_on_deathtimer_timeout"]

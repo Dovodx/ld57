@@ -46,8 +46,10 @@ script = ExtResource("5_i4c4s")
 pitch_variance = 0.1
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource("1_pngfq")
-damage = 20
+damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_pngfq")

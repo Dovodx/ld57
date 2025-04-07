@@ -42,5 +42,5 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_6phgx")
 
 [node name="enemy spawner" parent="." instance=ExtResource("3_46n1c")]
-spawn_time = 0.4
+spawn_time = 0.3
 total_enemies_to_spawn = 250

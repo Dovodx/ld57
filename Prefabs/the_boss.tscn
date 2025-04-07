@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsvnmosyh02ht"]
+
+[ext_resource type="Script" uid="uid://bol5fq7d8qxtb" path="res://Scripts/BossScript.gd" id="1_bbm1y"]
+[ext_resource type="Script" uid="uid://bswyl63jrj7lh" path="res://Scripts/HealthScript.gd" id="2_t7son"]
+[ext_resource type="Texture2D" uid="uid://cfeum52tlvyuu" path="res://Textures/boss.png" id="3_jo1rg"]
+[ext_resource type="Texture2D" uid="uid://ct7g0phdm4umr" path="res://Textures/boss turret.png" id="4_5sw84"]
+[ext_resource type="AudioStream" uid="uid://b0kga1qgr37d7" path="res://Sounds/enemy laser.wav" id="5_jo1rg"]
+[ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_5sw84"]
+[ext_resource type="AudioStream" uid="uid://brybix3nmuol3" path="res://Music/boss.wav" id="7_5sw84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpe17"]
+size = Vector2(106, 103)
+
+[node name="THE BOSS" type="CharacterBody2D"]
+script = ExtResource("1_bbm1y")
+
+[node name="healthnode" type="Node2D" parent="."]
+script = ExtResource("2_t7son")
+maxhealth = 600.0
+team = 1
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_jo1rg")
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_gpe17")
+
+[node name="turret" type="Node2D" parent="."]
+position = Vector2(-36, -34)
+
+[node name="sprite" type="Sprite2D" parent="turret"]
+texture = ExtResource("4_5sw84")
+
+[node name="firepoint1" type="Node2D" parent="turret"]
+position = Vector2(0, 12)
+
+[node name="turret2" type="Node2D" parent="."]
+position = Vector2(36, -34)
+
+[node name="sprite" type="Sprite2D" parent="turret2"]
+texture = ExtResource("4_5sw84")
+
+[node name="firepoint1" type="Node2D" parent="turret2"]
+position = Vector2(0, 12)
+
+[node name="turret3" type="Node2D" parent="."]
+position = Vector2(-33, 11)
+
+[node name="sprite" type="Sprite2D" parent="turret3"]
+texture = ExtResource("4_5sw84")
+
+[node name="firepoint1" type="Node2D" parent="turret3"]
+position = Vector2(0, 12)
+
+[node name="turret4" type="Node2D" parent="."]
+position = Vector2(33, 11)
+
+[node name="sprite" type="Sprite2D" parent="turret4"]
+texture = ExtResource("4_5sw84")
+
+[node name="firepoint1" type="Node2D" parent="turret4"]
+position = Vector2(0, 12)
+
+[node name="next pattern timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="fire fast timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="fire medium timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="fire slow timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.8
+one_shot = true
+
+[node name="move timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.4
+autostart = true
+
+[node name="shoot sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jo1rg")
+volume_db = -2.0
+max_distance = 1e+08
+attenuation = 1e-05
+max_polyphony = 20
+bus = &"SFX"
+script = ExtResource("6_5sw84")
+pitch_variance = 0.1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5sw84")
+autoplay = true
+max_distance = 1e+14
+attenuation = 1e-05
+panning_strength = 0.0
+bus = &"Music"
+
+[connection signal="died" from="healthnode" to="." method="_on_healthnode_died"]
+[connection signal="area_entered" from="hurtbox" to="healthnode" method="hurtbox_hit"]
+[connection signal="timeout" from="next pattern timer" to="." method="_on_next_pattern_timer_timeout"]
+[connection signal="timeout" from="fire fast timer" to="." method="_on_fire_fast_timer_timeout"]
+[connection signal="timeout" from="fire medium timer" to="." method="_on_fire_medium_timer_timeout"]
+[connection signal="timeout" from="fire slow timer" to="." method="_on_fire_slow_timer_timeout"]
+[connection signal="timeout" from="move timer" to="." method="_on_move_timer_timeout"]

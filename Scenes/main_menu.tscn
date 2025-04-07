@@ -98,7 +98,6 @@ theme_override_font_sizes/font_size = 18
 text = "Campaign"
 
 [node name="endless" type="Button" parent="button container"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_ma1bl")
 theme_override_font_sizes/font_size = 18
@@ -130,6 +129,6 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="button container/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="button container/endless" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button container/endless" to="." method="_on_endless_pressed"]
 [connection signal="pressed" from="button container/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="button container/quit" to="." method="_on_quit_pressed"]

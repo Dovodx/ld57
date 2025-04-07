@@ -29,7 +29,7 @@ todo:
 ✔have music continue between levels (except boss)
 -save data
 
--boss
+✔boss
 -boss music
 
 ✔fixed objects not despawning on scene change (attach to root/level, not root)
@@ -38,10 +38,10 @@ todo:
 ✔authentic vacuum sound
 -sound for swords disappearing
 ✔enemy damaged sprites
--enemy projectile interactions:
+✔enemy projectile interactions:
     ✔swords destroy enemy shots
     ✔DVD delete
-    -make vacuum suck in enemy projectiles too
+    ✔make vacuum suck in enemy projectiles too
     Xflamethrower?
     Xflail destroys projectiles? maybe its role is to do damage rather than protect the player
 ✔try using area2d with flamethrower, maybe it can work if it's not being re-enabled after spawning?
@@ -83,7 +83,7 @@ todo:
     -player clones
     -spinning blade that travels around the screen
     -meteor shower
-    -legally distinct crash bandicoot TNT with funny countdown
+    ✔legally distinct crash bandicoot TNT with funny countdown
     -a soothing song that puts enemies to sleep
     -W guy returns!?!?!?
     -minigun, for maximum pleasure
@@ -107,4 +107,4 @@ todo:
     ✔player health
     ✔PANDORA METER
     ✔death screen
-    -split meter into X number of levels?
+    -split meter into 4 sections

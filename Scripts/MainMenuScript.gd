@@ -11,6 +11,10 @@ func close_options():
 func _on_start_pressed():
 	get_tree().change_scene_to_packed(load("res://Scenes/campaign_screen.tscn"))
 
+func _on_endless_pressed() -> void:
+	get_tree().change_scene_to_packed(load("res://Scenes/level_endless.tscn"))
+	Global.start_level_music()
+
 func _on_options_pressed():
 	$options_bg.visible = true
 	$options_menu.visible = true

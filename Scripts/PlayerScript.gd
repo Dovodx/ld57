@@ -10,7 +10,7 @@ var pandora_prefab = preload("res://Prefabs/pandora's_box.tscn")
 var healthbar_max_size = 184.0
 
 @onready var pandorabar_fill = $"/root/level/hud/pandora fill"
-var pandora_meter = 100.0
+var pandora_meter = 0.0
 var pandora_max = 100.0
 var pandora_laser_add = 1
 
@@ -54,6 +54,7 @@ func _on_healthnode_died():
 	get_tree().root.get_node("level/enemy spawner/timer").stop()
 	get_tree().paused = false
 	get_node("/root/level/hud/pause menu").visible = false
+	Global.stop_level_music()
 
 func level_cleared():
 	$hurtbox.queue_free()

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://nrqq081vk3pp" path="res://Scripts/SfxScript.gd" id="6_lottt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8y4i"]
-size = Vector2(30, 14)
+size = Vector2(48, 22)
 
 [sub_resource type="Gradient" id="Gradient_1a5yh"]
 offsets = PackedFloat32Array(0, 0.190909, 0.745455, 1)
@@ -69,7 +69,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("suck:monitoring")
+tracks/3/path = NodePath("hitbox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -81,7 +81,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("hitbox:monitoring")
+tracks/4/path = NodePath(".:suck_active")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -131,37 +131,13 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("suck:monitoring")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.85, 7.18333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("hitbox:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.85, 7.18333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(9.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -169,19 +145,43 @@ tracks/5/keys = {
 "method": &"queue_free"
 }]
 }
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("vacuum sound")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.833333),
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("vacuum sound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.383333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"play_sfx"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("hitbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.85, 7.18333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:suck_active")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.85, 6.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2ufo"]
@@ -209,19 +209,20 @@ gravity_direction = Vector2(0, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="suck"]
 position = Vector2(2, 6)
-polygon = PackedVector2Array(-12, -10, -107, -110, 107, -110, 9, -10)
+polygon = PackedVector2Array(-12, -10, -119, -143, 102, -143, 9, -10)
 
 [node name="hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 4
 collision_mask = 10
-monitoring = false
 script = ExtResource("2_s6rhe")
 damage = 10
+clear_enemy_projectiles = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-2, -7)
 shape = SubResource("RectangleShape2D_r8y4i")
+disabled = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-1, -9)
@@ -255,6 +256,6 @@ bus = &"SFX"
 script = ExtResource("6_lottt")
 pitch_variance = 0.1
 
-[connection signal="body_entered" from="suck" to="." method="_on_suck_body_entered"]
-[connection signal="body_exited" from="suck" to="." method="_on_suck_body_exited"]
+[connection signal="area_entered" from="suck" to="." method="_on_suck_area_entered"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="was_hit" from="hitbox" to="scoop sound" method="play_sfx"]

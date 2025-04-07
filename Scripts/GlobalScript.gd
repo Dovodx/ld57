@@ -10,6 +10,7 @@ var levels: Array[PackedScene] = [
 	preload("res://Scenes/level3.tscn"),
 	preload("res://Scenes/level4.tscn"),
 	preload("res://Scenes/level5.tscn"),
+	preload("res://Scenes/level6.tscn"),
 ]
 
 func toggle_fullscreen():
