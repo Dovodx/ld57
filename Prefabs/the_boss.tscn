@@ -16,7 +16,8 @@ script = ExtResource("1_bbm1y")
 
 [node name="healthnode" type="Node2D" parent="."]
 script = ExtResource("2_t7son")
-maxhealth = 600.0
+health = 700.0
+maxhealth = 700.0
 team = 1
 
 [node name="sprite" type="Sprite2D" parent="."]
@@ -69,7 +70,7 @@ position = Vector2(0, 12)
 
 [node name="next pattern timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.45
 one_shot = true
 
 [node name="fire fast timer" type="Timer" parent="."]
@@ -102,8 +103,9 @@ bus = &"SFX"
 script = ExtResource("6_5sw84")
 pitch_variance = 0.1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_5sw84")
+volume_db = 4.0
 autoplay = true
 max_distance = 1e+14
 attenuation = 1e-05

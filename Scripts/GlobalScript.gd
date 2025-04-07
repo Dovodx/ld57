@@ -2,7 +2,7 @@ extends Node
 
 var current_level = 1
 var level_complete = false
-var levels_cleared = 0
+var levels_cleared = 5
 
 var levels: Array[PackedScene] = [
 	preload("res://Scenes/level1.tscn"),
@@ -19,11 +19,15 @@ func toggle_fullscreen():
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
-func load_level(level_num = current_level):
+func load_level(level_num):
+	current_level = level_num
 	get_tree().call_deferred("unload_current_scene")
-	get_tree().change_scene_to_packed(levels[current_level - 1])
+	print("loading level: " + str(level_num))
+	get_tree().change_scene_to_packed(levels[level_num - 1])
 	if level_num < 6:
 		start_level_music()
+	else:
+		stop_level_music()
 
 func start_level_music():
 	if !$"level music".playing:

@@ -1,8 +1,9 @@
 extends Control
 
 func _ready():
-	if Global.current_level == Global.levels.size() - 1:
+	if Global.current_level >= Global.levels.size() - 1:
 		$victory/VBoxContainer/next.visible = false
+		$victory/title.text = "Game Clear!\nTry endless mode!"
 	$death.visible = false
 	$"options_menu/exit button".connect("pressed", _on_options_exit_pressed)
 
