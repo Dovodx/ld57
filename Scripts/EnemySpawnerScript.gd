@@ -27,6 +27,7 @@ func _on_timer_timeout() -> void:
 	if endless:
 		#Spawn rate maxes out at 1000 enemies spawned
 		$timer.wait_time = max(0.6 - (total_enemies_spawned * 0.0005), 0.1)
+		total_enemies_spawned += 1
 	
 	var i = randi_range(0, enemies.size() - 1)
 	var newenemy = enemies[i].instantiate()

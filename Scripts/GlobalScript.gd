@@ -2,7 +2,7 @@ extends Node
 
 var current_level = 1
 var level_complete = false
-var levels_cleared = 5
+var levels_cleared = 0
 
 var levels: Array[PackedScene] = [
 	preload("res://Scenes/level1.tscn"),

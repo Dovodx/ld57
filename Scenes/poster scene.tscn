@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://t2vgmbo1lfuq"]
+
+[ext_resource type="PackedScene" uid="uid://cm05d2fyaydmg" path="res://Prefabs/pandora's_box.tscn" id="1_402xj"]
+[ext_resource type="PackedScene" uid="uid://dys32k8d10uat" path="res://Prefabs/pandora/swords.tscn" id="2_pnvri"]
+[ext_resource type="PackedScene" uid="uid://l8uoj3nyjg7a" path="res://Prefabs/pandora/flamethrower.tscn" id="3_eaf33"]
+[ext_resource type="PackedScene" uid="uid://nm1q3080p2f8" path="res://Prefabs/pandora/flail.tscn" id="4_7kbbh"]
+[ext_resource type="PackedScene" uid="uid://bdl8a31u7bq00" path="res://Prefabs/pandora/bomb.tscn" id="5_qrunq"]
+[ext_resource type="PackedScene" uid="uid://c8vls6fo3s683" path="res://Prefabs/pandora/bats.tscn" id="6_kq42c"]
+[ext_resource type="PackedScene" uid="uid://bhmk1c7vsukmi" path="res://Prefabs/pandora/rocket.tscn" id="7_1i7al"]
+[ext_resource type="PackedScene" uid="uid://ow2uhaljlqxs" path="res://Prefabs/pandora/vacuum.tscn" id="8_48737"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="pandora\'s box" parent="." instance=ExtResource("1_402xj")]
+position = Vector2(259, 236)
+
+[node name="swords" parent="pandora\'s box" instance=ExtResource("2_pnvri")]
+position = Vector2(-136, -145)
+rotation = 2.19195
+
+[node name="flamethrower" parent="pandora\'s box" instance=ExtResource("3_eaf33")]
+position = Vector2(69, -108)
+
+[node name="flail" parent="pandora\'s box" instance=ExtResource("4_7kbbh")]
+position = Vector2(-12, -207)
+rotation = 3.14159
+
+[node name="bomb" parent="pandora\'s box" instance=ExtResource("5_qrunq")]
+position = Vector2(125, -134)
+
+[node name="bats" parent="pandora\'s box" instance=ExtResource("6_kq42c")]
+position = Vector2(-105, -116)
+
+[node name="rocket" parent="pandora\'s box" instance=ExtResource("7_1i7al")]
+position = Vector2(-133, -39)
+
+[node name="vacuum" parent="pandora\'s box" instance=ExtResource("8_48737")]
+position = Vector2(106, -65)
+
+[editable path="pandora\'s box"]

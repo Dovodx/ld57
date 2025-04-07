@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	if Global.current_level >= Global.levels.size() - 1:
+	if Global.current_level >= Global.levels.size():
 		$victory/VBoxContainer/next.visible = false
 		$victory/title.text = "Game Clear!\nTry endless mode!"
 	$death.visible = false
@@ -30,6 +30,8 @@ func _on_resume_pressed() -> void:
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	if Global.current_level < 6:
+		Global.start_level_music()
 
 func _on_quit_pressed() -> void:
 	#todo: go back to campaign screen if in campaign, main if endless mode
@@ -47,4 +49,4 @@ func _on_options_exit_pressed() -> void:
 func _on_next_pressed() -> void:
 	get_tree().paused = false
 	Global.current_level += 1
-	Global.load_level()
+	Global.load_level(Global.current_level)
